@@ -134,6 +134,12 @@ ComplexArray^ ComplexArray::imag(array<double>^ arr)
 }
 
 
+IEnumerator<ComplexView^>^ ComplexArray::GetEnumerator()
+{
+  return gcnew ComplexEnumerator(data_, size_);
+}
+
+
 ComplexArray^ ComplexArray::operator+=(double d)
 {
   double* ptr = begin();

@@ -205,11 +205,7 @@ namespace ComplexArrayLib {
     static ComplexArray^ imag(IEnumerable<double> ^ e);
     static ComplexArray^ imag(array<double>^ arr);
 
-    virtual IEnumerator<ComplexView^>^ GetEnumerator()
-    {
-      return gcnew ComplexEnumerator(data_, size_);
-    }
-
+    virtual IEnumerator<ComplexView^>^ GetEnumerator();
     virtual System::Collections::IEnumerator^ GetObjEnumerator() sealed
       = System::Collections::IEnumerable::GetEnumerator
     {
