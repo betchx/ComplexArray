@@ -136,8 +136,8 @@ ComplexArray^ ComplexArray::imag(array<double>^ arr)
 
 ComplexArray^ ComplexArray::operator+=(double d)
 {
-  double* ptr = data_;
-  double* last = data_+size_;
+  double* ptr = begin();
+  double* last = end();
   while(ptr!=last){
     *(ptr++) += d;
     ptr++;
@@ -148,9 +148,9 @@ ComplexArray^ ComplexArray::operator+=(double d)
 ComplexArray^ ComplexArray::operator+(double d)
 {
   ComplexArray^ res = gcnew ComplexArray(this->Length, false);
-  double * pin = data_;
-  double * pout = res->data_;
-  double * end = data_ + size_;
+  double * pin = begin();
+  double * pout = res->begin();
+  double * end = end();
   while(pin != end){
     *(pout++) = *(pin++) + d;  // add only real
     *(pout++) = *(pin++);
@@ -184,9 +184,9 @@ ComplexArray^ ComplexArray::operator+(Complex% c)
 ComplexArray^ ComplexArray::operator+(Complex^ c)
 {
   ComplexArray^ res = gcnew ComplexArray(this->Length, false);
-  double * pin = data_;
-  double * pout = res->data_;
-  double * end = data_ + size_;
+  double * pin = begin();
+  double * pout = res->begin();
+  double * end = end();
   while(pin != end){
     *(pout++) = *(pin++) + c->Real;
     *(pout++) = *(pin++) + c->Imag;
