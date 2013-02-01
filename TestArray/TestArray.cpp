@@ -290,6 +290,25 @@ void test_operator_plus_complex_array()
 
 }
 
+void test_fft_impulse()
+{
+	ENTER("FFT_IMPULSE");
+
+	int n = 8;
+
+	ComplexArray ca(n,true);
+	ca[0]->Real = 1.0;
+
+	ComplexArray^ sp = ca.fft();
+
+	for(int i = 0; i < n; ++i)
+	{
+		IN_DELTA(ca[i]->Real, 1.0, 0.0001, "Real");
+		IN_DELTA(ca[i]->Imag, 0.0, 0.0001, "Imag");
+	}
+
+}
+
 
 int main(array<System::String ^> ^args)
 {
@@ -307,6 +326,8 @@ int main(array<System::String ^> ^args)
   test_assign();
   test_operator_plus_equal_complex_array();
   test_operator_plus_complex_array();
+
+  test_fft_impulse();
 
   Console::WriteLine();
   Console::WriteLine("Press Any Key.");

@@ -227,13 +227,14 @@ namespace ComplexArrayLib {
       }
     }
 
-
     property ComplexView^ default [int]
     {
       ComplexView^ get(int idx){
         return gcnew ComplexView(data_+2*idx);
       }
     }
+
+
     property int Length
     {
       int get(){return size_/2;}
@@ -246,8 +247,6 @@ namespace ComplexArrayLib {
     ComplexArray^ real_assign(IEnumerable<double>^ c);
     ComplexArray^ imag_assign(IEnumerable<double>^ c);
 
-
-
     ComplexArray^ operator+=(double d);
     ComplexArray^ operator+(double d);
     ComplexArray^ operator+=(Complex^ c);
@@ -259,6 +258,10 @@ namespace ComplexArrayLib {
     ComplexArray^ operator+=(ComplexArray% ca);
     ComplexArray^ operator+(ComplexArray% ca);
 
+
+	// Operation
+
+	ComplexArray^ fft();
 
   };
 }

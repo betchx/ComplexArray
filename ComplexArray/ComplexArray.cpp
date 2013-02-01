@@ -267,4 +267,12 @@ ComplexArray^ ComplexArray::operator+(ComplexArray^ ca)
   return ans;
 }
 
+// Operations
+ComplexArray^ ComplexArray::fft()
+{
+	ComplexArray^ ans = gcnew ComplexArray(size_, false);
+
+	return ans;
+}
+
 }
