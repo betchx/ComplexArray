@@ -262,6 +262,7 @@ namespace ComplexArrayLib {
 	// Operation
 
 	ComplexArray^ fft();
+	ComplexArray^ ifft();
 
   };
 }

@@ -284,4 +284,20 @@ ComplexArray^ ComplexArray::fft()
 	return ans;
 }
 
+ComplexArray^ ComplexArray::ifft()
+{
+	ComplexArray^ ans = gcnew ComplexArray(size_, false);
+	fftw_plan plan = fftw_plan_dft_1d(
+		Length,                        // Data size
+		(fftw_complex*)(data_),        // input
+		(fftw_complex*)(ans->data_),   // output
+		FFTW_BACKWARD,                 // Direction
+		FFTW_ESTIMATE);                // Option
+	fftw_execute(plan);
+	fftw_destroy_plan(plan);
+
+	return ans;
+}
+
+
 }

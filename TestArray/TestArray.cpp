@@ -309,6 +309,34 @@ void test_fft_impulse()
 
 }
 
+void test_ifft_impulse()
+{
+	ENTER("IFFT Implse");
+
+	int n = 8;
+	array<double>^ arr = gcnew array<double>(n);
+	for(int i = 0; i < n; ++i)
+	{
+		arr[i] = 1.0;
+	}
+	ComplexArray^ ca = ComplexArray::real(arr);
+	ComplexArray^ res = nullptr;
+	try{
+		res = ca->ifft();
+		IN_DELTA(res[0]->Real,   n, 0.00001, "Impulse");
+		IN_DELTA(res[0]->Imag, 0.0, 0.00001, "Imag");
+		for(int i = 1; i < n; i++)
+		{
+			IN_DELTA(res[i]->Real, 0.0, 0.00001, "Real");
+			IN_DELTA(res[i]->Imag, 0.0, 0.00001, "Imag");
+		}
+	}
+	finally{
+		delete ca;
+		delete res;
+	}
+}
+
 
 int main(array<System::String ^> ^args)
 {
@@ -328,7 +356,7 @@ int main(array<System::String ^> ^args)
   test_operator_plus_complex_array();
 
   test_fft_impulse();
-
+  test_ifft_impulse();
   Console::WriteLine();
   Console::WriteLine("Press Any Key.");
   Console::ReadLine();
