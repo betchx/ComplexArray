@@ -1,13 +1,18 @@
 # Compiled Object files
-*.slo
-*.lo
-*.o
+*.obj
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
+# Output directory by VC++
+Debug/
+Release/
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# Temporary files by VC++
+*.opensdf
+
+# SQL detabase   <= Too Large
+*.sdf
+
+# vi tempfiles
+*~
+*.swp
+
+
