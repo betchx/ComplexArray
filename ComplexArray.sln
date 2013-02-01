@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComplexArray", "ComplexArray\ComplexArray.vcxproj", "{B0F32A58-1907-48AF-9668-C6E73AA00FE9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestArray", "TestArray\TestArray.vcxproj", "{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9} = {B0F32A58-1907-48AF-9668-C6E73AA00FE9}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|Win32.Build.0 = Debug|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|Win32.ActiveCfg = Release|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|Win32.Build.0 = Release|Win32
+		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Debug|Win32.ActiveCfg = Debug|Win32
+		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Debug|Win32.Build.0 = Debug|Win32
+		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Release|Win32.ActiveCfg = Release|Win32
+		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
