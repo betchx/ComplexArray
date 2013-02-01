@@ -167,9 +167,11 @@ ComplexArray^ ComplexArray::operator+=(Complex^ c)
 {
   double* ptr = begin();
   double* last = end();
+  double re = c->Real;
+  double im = c->Imag;
   while(ptr!=last){
-    *(ptr++) += c->Real;
-    *(ptr++) += c->Imag;
+    *(ptr++) += re;
+    *(ptr++) += im;
   }
   return this;
 }
