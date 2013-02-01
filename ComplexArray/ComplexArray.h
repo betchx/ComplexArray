@@ -186,7 +186,7 @@ namespace ComplexArrayLib {
 
     double* begin(){return data_;}
     double* end(){
-      if(!end_) end_ = data_ + buf_size_;
+      if(!end_) end_ = data_ + size_;
       return end_;
     }
 
