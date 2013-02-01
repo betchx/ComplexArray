@@ -13,7 +13,7 @@ namespace ComplexArrayLib
 
 ComplexArray::~ComplexArray()
 {
-//  fftw_free(data_);
+  fftw_free(data_);
 }
 
 ComplexArray::!ComplexArray()
