@@ -78,13 +78,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ComplexBase.h" />
+    <ClInclude Include="Complex.h" />
     <ClInclude Include="ComplexArray.h" />
+    <ClInclude Include="ComplexEnumerator.h" />
+    <ClInclude Include="ComplexView.h" />
+    <ClInclude Include="IComplex.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Complex.cpp" />
     <ClCompile Include="ComplexArray.cpp" />
+    <ClCompile Include="ComplexEnumerator.cpp" />
+    <ClCompile Include="ComplexView.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
