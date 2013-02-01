@@ -303,8 +303,8 @@ void test_fft_impulse()
 
 	for(int i = 0; i < n; ++i)
 	{
-		IN_DELTA(ca[i]->Real, 1.0, 0.0001, "Real");
-		IN_DELTA(ca[i]->Imag, 0.0, 0.0001, "Imag");
+		IN_DELTA(sp[i]->Real, 1.0, 0.0001, "Real");
+		IN_DELTA(sp[i]->Imag, 0.0, 0.0001, "Imag");
 	}
 
 }
