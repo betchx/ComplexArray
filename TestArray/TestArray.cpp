@@ -136,8 +136,9 @@ void test_operator_plus_equal_complex()
 
   ComplexArray ca(arr);
 
-  ca += gcnew Complex(5.0, -5.0);
+  Complex c(5.0, -5.0);
 
+  ca += c;
   IN_DELTA(ca[0]->Real, 0.0+5.0, 0.001, "");
   IN_DELTA(ca[0]->Imag, 1.0-5.0, 0.001, "");
   IN_DELTA(ca[1]->Real, 2.0+5.0, 0.001, "");
@@ -306,6 +307,7 @@ int main(array<System::String ^> ^args)
   test_assign();
   test_operator_plus_equal_complex_array();
   test_operator_plus_complex_array();
+
   Console::WriteLine();
   Console::WriteLine("Press Any Key.");
   Console::ReadLine();
