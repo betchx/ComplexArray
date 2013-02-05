@@ -74,6 +74,11 @@ ComplexView^ ComplexArray::default::get(int idx)
 	return gcnew ComplexView(data_+2*idx);
 }
 
+System::Collections::IEnumerator^ ComplexArray::GetObjEnumerator()
+{
+	return GetEnumerator();
+}
+
 
 int ComplexArray::size::get()
 {

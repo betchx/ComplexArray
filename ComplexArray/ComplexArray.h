@@ -38,10 +38,7 @@ public:
 
 	virtual IEnumerator<ComplexView^>^ GetEnumerator();
 	virtual System::Collections::IEnumerator^ GetObjEnumerator()
-		= System::Collections::IEnumerable::GetEnumerator
-	{
-		return GetEnumerator();
-	}
+		= System::Collections::IEnumerable::GetEnumerator;
 
 	property IEnumerator<double>^ Real
 	{
