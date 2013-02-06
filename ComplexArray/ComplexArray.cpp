@@ -69,10 +69,17 @@ IEnumerator<double>^ ComplexArray::Imag::get()
 	return gcnew ComplexElementEnumerator(data_+1, size_);
 }
 
-ComplexView^ ComplexArray::default::get(int idx)
+Complex^ ComplexArray::default::get(int idx)
 {
-	return gcnew ComplexView(data_+2*idx);
+	return gcnew ComplexView(data_ + 2 * idx);
 }
+
+void ComplexArray::default::set(int idx, Complex^ c)
+{
+	data_[idx*2] = c->Real;
+	data_[idx*2+1] = c->Imag;
+}
+
 
 System::Collections::IEnumerator^ ComplexArray::GetObjEnumerator()
 {

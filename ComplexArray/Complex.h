@@ -2,37 +2,43 @@
 #pragma once
 
 #include "Stdafx.h"
-#include "ComplexBase.h"
 
+using namespace System;
+using namespace System::Collections::Generic;
+
+#define BEGIN_NAMESPACE namespace ComplexArrayLib{
+#define END_NAMESPACE }
 
 BEGIN_NAMESPACE;
 
-public ref class Complex :  ComplexBase
+public ref class Complex
 {
+protected:
 	double real_;
 	double imag_;
 
 public:
+	Complex();
 	Complex(double re, double im);
-	Complex(IComplex^ c);
+	Complex(double re);
+	Complex(double* ptr);
 
-	virtual property IComplex^ Conj{
-		IComplex^ get()override;
-	}
-
-	virtual property double Real
+	property double Real
 	{
-		double get()override;
-		void set(double value)override;
+		double get();
+		virtual void set(double value);
 	} 
 
-	virtual property double Imag
+	property double Imag
 	{
-		double get()override;
-		void set(double value)override;
+		double get();
+		virtual void set(double value);
 	} 
 
-	Complex^ operator=(IComplex^ c);
+	property double Power{ double get(){return Real*Real+Imag*Imag;}}
+	property double Abs{ double get(){return Math::Sqrt(Power);} }
+	property double Ang{ double get(){return Math::Atan2(Imag, Real);}}
+	property Complex^ Conj{ Complex^ get(); }
 
 };
 

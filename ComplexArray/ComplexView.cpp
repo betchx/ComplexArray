@@ -7,42 +7,27 @@ BEGIN_NAMESPACE;
 
 
 ComplexView::ComplexView(double* origin)
-	:real_(*origin), imag_(*(origin+1))
-{
-}
+	:Complex(origin),ptr_(origin)
+{}
 
-IComplex^ ComplexView::Conj::get()
-{
-	return gcnew Complex(real_, imag_);
-}
-
-
-double ComplexView::Real::get()
-{
-	return real_;
-}
 
 void ComplexView::Real::set(double value)
 {
 	real_ = value;
+	ptr_[0] = value;
 }
 
-double ComplexView::Imag::get()
-{
-	return imag_;
-}
 
 void ComplexView::Imag::set(double value)
 {
 	imag_ = value;
+	ptr_[1] = value;
 }
 
 
-ComplexView^ ComplexView::operator=(IComplex^ c)
-{
-	real_ = c->Real;
-	imag_ = c->Imag;
-	return this;
-}
+//ComplexView::operator Complex^(ComplexView^ v)
+//{
+//	return gcnew Complex(v->real_, v->imag_);
+//}
 
 END_NAMESPACE;

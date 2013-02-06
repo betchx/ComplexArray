@@ -3,34 +3,27 @@
 #include "Complex.h"
 
 BEGIN_NAMESPACE;
-public ref class ComplexView : public ComplexBase
+
+public ref class ComplexView : Complex
 {
-	double& real_;
-	double& imag_;
+	double* ptr_;
 
 public:
 
 	// construct
 	ComplexView(double* origin);
 
-	virtual property IComplex^ Conj
+	property double Real
 	{
-		IComplex^ get()override;
+		virtual void set(double value) override;
 	}
 
-	virtual property double Real
+	property double Imag
 	{
-		double get()override;
-		void set(double value)override;
+		virtual void set(double value) override;
 	}
 
-	virtual property double Imag
-	{
-		double get()override;
-		void set(double value)override;
-	}
-
-	ComplexView^ operator=(IComplex^ c);
-
+//	static operator Complex^(ComplexView^ v);
 };
+
 END_NAMESPACE;

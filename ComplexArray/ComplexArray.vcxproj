@@ -78,12 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ComplexBase.h" />
     <ClInclude Include="Complex.h" />
     <ClInclude Include="ComplexArray.h" />
     <ClInclude Include="ComplexEnumerator.h" />
     <ClInclude Include="ComplexView.h" />
-    <ClInclude Include="IComplex.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>

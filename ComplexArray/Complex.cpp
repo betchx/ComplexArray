@@ -4,18 +4,29 @@
 
 BEGIN_NAMESPACE;
 
+Complex::Complex()
+	:real_(0.0),imag_(0.0)
+{}
+
+
+
 Complex::Complex(double re, double im)
 	:real_(re),imag_(im)
-{
-}
+{}
 
-Complex::Complex(IComplex^ c)
-	:real_(c->Real),imag_(c->Imag)
-{
-}
+Complex::Complex(double re)
+	:real_(re),imag_(0.0)
+{}
 
-IComplex^ Complex::Conj::get()
-{ return gcnew Complex(real_, - imag_);}
+Complex::Complex(double* ptr)
+	:real_(ptr[0]),imag_(ptr[1])
+{}
+
+
+Complex^ Complex::Conj::get()
+{
+	return gcnew Complex(Real, - Imag);
+}
 
 double Complex::Real::get()
 {
@@ -35,14 +46,6 @@ double Complex::Imag::get()
 void Complex::Imag::set(double value)
 {
 	imag_ = value;
-}
-
-
-Complex^ Complex::operator=(IComplex^ c)
-{
-	real_ = c->Real;
-	imag_ = c->Imag;
-	return this;
 }
 
 END_NAMESPACE;

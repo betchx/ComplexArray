@@ -22,7 +22,7 @@ void test_basic()
 
   ComplexArray ca(arr);
 
-  IComplex^ c0 = ca[0];
+  Complex^ c0 = ca[0];
 
   ASSERT(c0->Real == 0.0, L"c0 is not 0.0");
  
@@ -184,7 +184,7 @@ void test_complex()
   c->Imag = -1.0;
   IN_DELTA(c->Ang, -Math::PI / 4.0, 0.001, "Ang(1,1)");
 
-  IComplex^ d = c->Conj;
+  Complex^ d = c->Conj;
   IN_DELTA(d->Real, c->Real, 0.001, "Conj(Real)");
   IN_DELTA(d->Imag, -c->Imag, 0.001, "Conj(Imag)");
 

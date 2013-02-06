@@ -49,11 +49,11 @@ public:
 		IEnumerator<double>^ get();
 	}
 
-	property ComplexView^ default [int]
+	property Complex^ default [int]
 	{
-		ComplexView^ get(int idx);
+		Complex^ get(int idx);
+		void set(int idx, Complex^ value);
 	}
-
 
 	property int Length
 	{
