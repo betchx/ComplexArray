@@ -40,6 +40,38 @@ public:
 	property double Ang{ double get(){return Math::Atan2(Imag, Real);}}
 	property Complex^ Conj{ Complex^ get(); }
 
+      ////////////////////////////////////
+	 // Opreators
+	////////////////////////////////////
+
+	// add
+	Complex^ operator +(double d);
+	Complex^ operator +(Complex^ c);
+	Complex^ operator +(Complex% c);
+	static Complex^ operator +(double d, Complex^ c);
+	static Complex^ operator +(double d, Complex% c);
+
+	// sub
+	Complex^ operator -(double d);
+	Complex^ operator -(Complex^ c);
+	Complex^ operator -(Complex% c);
+	static Complex^ operator -(double d, Complex^ c);
+	static Complex^ operator -(double d, Complex% c);
+
+	// mul
+	Complex^ operator *(double d);
+	Complex^ operator *(Complex^ c);
+	Complex^ operator *(Complex% c);
+	static Complex^ operator *(double d, Complex^ c);
+	static Complex^ operator *(double d, Complex% c);
+
+	// div
+	Complex^ operator /(double d);
+	Complex^ operator /(Complex^ c);
+	Complex^ operator /(Complex% c);
+	static Complex^ operator /(double d, Complex^ c);
+	static Complex^ operator /(double d, Complex% c);
+
 };
 
 

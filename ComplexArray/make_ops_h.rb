@@ -2,7 +2,7 @@
 op_rev = %w(+ *) # switchable operator
 op_seq = %w(- /) # nonswitchable operator
 ops=op_rev + op_seq
-vars=%w(double IComplex^ IComplex%)
+vars=%w(double Complex^ Complex%)
 arrs=%w(ComplexArray^ ComplexArray%)
 
 puts "// for header file"
@@ -39,6 +39,11 @@ ComplexArray^ ComplexArray::operator #{op}(#{klass} rhs)
 }
 
 ComplexArray^ ComplexArray::operator #{op}(#{klass} lhs, ComplexArray^ rhs)
+{
+    return rhs #{op} lhs;
+}
+
+ComplexArray^ ComplexArray::operator #{op}(#{klass} lhs, ComplexArray% rhs)
 {
     return rhs #{op} lhs;
 }
@@ -79,6 +84,17 @@ ComplexArray^ ComplexArray::operator #{op}(#{klass} lhs, ComplexArray^ rhs)
 {
   // allocate results without initialization
   ComplexArray^ res = gcnew ComplexArray(rhs->size_, false);
+  // Apply operation
+  for(int i = 0; i < res->Length; ++i){
+    res[i] = lhs #{op} rhs[i];
+  }
+  return res;
+}
+
+ComplexArray^ ComplexArray::operator #{op}(#{klass} lhs, ComplexArray% rhs)
+{
+  // allocate results without initialization
+  ComplexArray^ res = gcnew ComplexArray(rhs.size_, false);
   // Apply operation
   for(int i = 0; i < res->Length; ++i){
     res[i] = lhs #{op} rhs[i];

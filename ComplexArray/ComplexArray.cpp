@@ -187,66 +187,6 @@ IEnumerator<ComplexView^>^ ComplexArray::GetEnumerator()
 }
 
 
-ComplexArray^ ComplexArray::operator+=(double d)
-{
-	double* ptr = begin();
-	double* last = end();
-	while(ptr!=last){
-		*(ptr++) += d;
-		ptr++;
-	}
-	return this;
-}
-
-ComplexArray^ ComplexArray::operator+(double d)
-{
-	ComplexArray^ res = gcnew ComplexArray(this->Length, false);
-	double * pin = begin();
-	double * pout = res->begin();
-	double * last = end();
-	while(pin != last){
-		*(pout++) = *(pin++) + d;  // add only real
-		*(pout++) = *(pin++);
-	}
-	return res;
-}
-
-ComplexArray^ ComplexArray::operator+=(Complex% c)
-{
-	return this+=%c;
-}
-
-ComplexArray^ ComplexArray::operator+=(Complex^ c)
-{
-	double* ptr = begin();
-	double* last = end();
-	double re = c->Real;
-	double im = c->Imag;
-	while(ptr!=last){
-		*(ptr++) += re;
-		*(ptr++) += im;
-	}
-	return this;
-}
-
-ComplexArray^ ComplexArray::operator+(Complex% c)
-{
-	return this + %c;
-}
-
-ComplexArray^ ComplexArray::operator+(Complex^ c)
-{
-	ComplexArray^ res = gcnew ComplexArray(this->Length, false);
-	double * pin = begin();
-	double * pout = res->begin();
-	double * last = end();
-	while(pin != last){
-		*(pout++) = *(pin++) + c->Real;
-		*(pout++) = *(pin++) + c->Imag;
-	}
-	return res;
-}
-
 ComplexArray^ ComplexArray::real_assign(IEnumerable<double>^ c)
 {
 	IEnumerator<double>^ e = c->GetEnumerator();
@@ -269,49 +209,6 @@ ComplexArray^ ComplexArray::imag_assign(IEnumerable<double>^ c)
 		++ptr;
 	}
 	return this;
-}
-
-ComplexArray^ ComplexArray::operator+=(ComplexArray% ca)
-{
-	return this += %ca;
-}
-
-ComplexArray^ ComplexArray::operator+=(ComplexArray^ ca)
-{
-	if(size_ != ca->size_)
-		throw gcnew ArgumentException("Different size");
-
-	double* pout = begin();
-	double* pin = ca->begin();
-	double* end_ = end();
-	while(pout != end_)
-	{
-		*(pout++) += *(pin++);
-	}
-
-	return this;
-}
-
-ComplexArray^ ComplexArray::operator+(ComplexArray% ca)
-{
-	return this + %ca;
-}
-
-ComplexArray^ ComplexArray::operator+(ComplexArray^ ca)
-{
-	if(size_ != ca->size_)
-		throw gcnew ArgumentException("Different size");
-	ComplexArray^ ans = gcnew ComplexArray(size_, false);
-
-	double* pout = ans->begin();
-	double* x = begin();
-	double* y = ca->begin();
-	while(x != end())
-	{
-		*(pout++) = *(x++) + *(y++);
-	}
-
-	return ans;
 }
 
 // Operations
