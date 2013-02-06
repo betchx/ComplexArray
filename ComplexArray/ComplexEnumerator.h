@@ -35,20 +35,11 @@ public:
 	virtual property ComplexView^ Current
 	{
 		ComplexView^ get()override;
-		//{
-		//	if(ptr == first || ptr >= last)
-		//		throw gcnew InvalidOperationException();
-		//	return gcnew ComplexView(ptr);
-		//}
 	}
 
 	ComplexEnumerator(double* base, int size);
-	//	:ViewEnumerator(base, size)
-	//{}
 
 	virtual ~ComplexEnumerator();
-	//{
-	//}
 };
 
 //------------------------------------------------//
@@ -59,16 +50,9 @@ public:
 	virtual property double Current
 	{
 		double get() override;
-		//{
-		//	if(ptr == first || ptr >= last)
-		//		throw gcnew InvalidOperationException();
-		//	return *ptr;
-		//}
 	}
 
 	ComplexElementEnumerator(double* base, int size);
-	//	:ViewEnumerator(base, size)
-	//{}
 
 	virtual ~ComplexElementEnumerator();
 };
