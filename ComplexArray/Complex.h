@@ -47,37 +47,30 @@ public:
 	 // Opreators
 	////////////////////////////////////
 
+	static operator  Complex^ (Complex% s){return %s;}
+
+
+public:
 	// add
-	Complex^ operator +(double d);
-	Complex^ operator +(Complex^ c);
-	Complex^ operator +(Complex% c);
+	static Complex^ operator +(Complex^ s, double d);
 	static Complex^ operator +(double d, Complex^ c);
-	static Complex^ operator +(double d, Complex% c);
+	static Complex^ operator +(Complex^ s, Complex^ c);
 
 	// sub
-	Complex^ operator -(double d);
-	Complex^ operator -(Complex^ c);
-	Complex^ operator -(Complex% c);
+	static Complex^ operator -(Complex^ s, double d);
+	static Complex^ operator -(Complex^ s, Complex^ c);
 	static Complex^ operator -(double d, Complex^ c);
-	static Complex^ operator -(double d, Complex% c);
 
 	// mul
-	Complex^ operator *(double d);
-	Complex^ operator *(Complex^ c);
-	Complex^ operator *(Complex% c);
+	static Complex^ operator *(Complex^ s, double d);
+	static Complex^ operator *(Complex^ s, Complex^ c);
 	static Complex^ operator *(double d, Complex^ c);
-	static Complex^ operator *(double d, Complex% c);
 
 	// div
-	Complex^ operator /(double d);
-	Complex^ operator /(Complex^ c);
-	Complex^ operator /(Complex% c);
+	static Complex^ operator /(Complex^ s, double d);
+	static Complex^ operator /(Complex^ s, Complex^ c);
 	static Complex^ operator /(double d, Complex^ c);
-	static Complex^ operator /(double d, Complex% c);
 
 };
 
-
-
 END_NAMESPACE;
-
