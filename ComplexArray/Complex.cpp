@@ -22,6 +22,10 @@ Complex::Complex(double* ptr)
 	:real_(ptr[0]),imag_(ptr[1])
 {}
 
+Complex::Complex(Complex% c)
+	:real_(c.Real),imag_(c.Imag)
+{}
+
 
 Complex^ Complex::Conj::get()
 {

@@ -22,6 +22,7 @@ public:
 	Complex(double re, double im);
 	Complex(double re);
 	Complex(double* ptr);
+	Complex(Complex% c);
 
 	property double Real
 	{
