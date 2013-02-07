@@ -44,6 +44,14 @@ ComplexArray::ComplexArray(const ComplexArray^ other)
 	memcpy_s(data_, buf_size_, other->data_, 2*sizeof(double)*other->size_);
 }
 
+ComplexArray::ComplexArray(const ComplexArray% other)
+{
+	size_ = other.size_;
+	allocate();
+	memcpy_s(data_, buf_size_, other.data_, 2*sizeof(double)*size_);
+}
+
+
 void ComplexArray::allocate()
 {
 	// convert to even number
