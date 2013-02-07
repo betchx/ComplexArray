@@ -74,7 +74,7 @@ void test_real_enumerator()
 
 	ComplexArray ca(arr);
 
-	IEnumerator<double>^ e = ca.Real;
+	IEnumerator<double>^ e = ca.Real->GetEnumerator();
 
 	ASSERT(e->MoveNext(), L"Real Enumerator: First Move Next");
 	IN_DELTA(e->Current, arr[0], 0.001, "First Element");
@@ -90,7 +90,7 @@ void test_imag_enumerator()
 
 	ComplexArray ca(arr);
 
-	IEnumerator<double>^ e = ca.Imag;
+	IEnumerator<double>^ e = ca.Imag->GetEnumerator();
 
 	ASSERT(e->MoveNext(), L"Real Enumerator: First Move Next");
 	IN_DELTA(e->Current, arr[1], 0.001, "First Element");
