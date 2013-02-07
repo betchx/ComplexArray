@@ -54,7 +54,8 @@ public:
 	{
 		IEnumerable<double>^ get();
 	}
-
+    array<double>^ real();
+    array<double>^ imag();
 	property Complex^ default [int]
 	{
 		Complex^ get(int idx);

@@ -6,6 +6,8 @@
 #include <memory>
 #include <cmath>
 
+using namespace System::Collections::Generic;
+using namespace System::Linq;
 
 BEGIN_NAMESPACE;
 
@@ -83,6 +85,17 @@ IEnumerable<double>^ ComplexArray::Imag::get()
 {
 	return gcnew ComplexElementEnumeratorWrapper(data_+1, size_);
 }
+
+array<double>^ ComplexArray::real()
+{
+  return Enumerable::ToArray(Real);
+}
+array<double>^ ComplexArray::imag()
+{
+  return Enumerable::ToArray(Imag);
+}
+
+
 
 Complex^ ComplexArray::default::get(int idx)
 {
