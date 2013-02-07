@@ -68,6 +68,7 @@
     <None Include="app.ico">
       <Filter>リソース ファイル</Filter>
     </None>
+    <None Include="make_ops_h.rb" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
