@@ -48,4 +48,12 @@ void Complex::Imag::set(double value)
 	imag_ = value;
 }
 
+
+String^ Complex::ToString()
+{
+	return String::Format("({0}, {1})", Real, Imag);
+}
+
+
+
 END_NAMESPACE;
