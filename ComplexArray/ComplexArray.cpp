@@ -73,14 +73,14 @@ void ComplexArray::allocate()
 		throw gcnew OutOfMemoryException();
 }
 
-IEnumerator<double>^ ComplexArray::Real::get()
+IEnumerable<double>^ ComplexArray::Real::get()
 {
-	return gcnew ComplexElementEnumerator(data_, size_);
+	return gcnew ComplexElementEnumeratorWrapper(data_, size_);
 }
 
-IEnumerator<double>^ ComplexArray::Imag::get()
+IEnumerable<double>^ ComplexArray::Imag::get()
 {
-	return gcnew ComplexElementEnumerator(data_+1, size_);
+	return gcnew ComplexElementEnumeratorWrapper(data_+1, size_);
 }
 
 Complex^ ComplexArray::default::get(int idx)

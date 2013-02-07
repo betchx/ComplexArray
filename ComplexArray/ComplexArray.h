@@ -46,13 +46,13 @@ public:
 	virtual System::Collections::IEnumerator^ GetObjEnumerator()
 		= System::Collections::IEnumerable::GetEnumerator;
 
-	property IEnumerator<double>^ Real
+	property IEnumerable<double>^ Real
 	{
-		IEnumerator<double>^ get();
+		IEnumerable<double>^ get();
 	}
-	property IEnumerator<double>^ Imag
+	property IEnumerable<double>^ Imag
 	{
-		IEnumerator<double>^ get();
+		IEnumerable<double>^ get();
 	}
 
 	property Complex^ default [int]

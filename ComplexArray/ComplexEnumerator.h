@@ -57,4 +57,21 @@ public:
 	virtual ~ComplexElementEnumerator();
 };
 
+
+ref class ComplexElementEnumeratorWrapper : IEnumerable<double>
+{
+  double* ptr_;
+  int size_;
+public:
+  ComplexElementEnumeratorWrapper(double* ptr, int size):ptr_(ptr),size_(size){}
+
+  virtual IEnumerator<double>^ GetEnumerator()
+  {return gcnew ComplexElementEnumerator(ptr_, size_);}
+
+  virtual System::Collections::IEnumerator^ GetObjEnumerator()
+    = System::Collections::IEnumerable::GetEnumerator
+  {return GetEnumerator();}
+};
+
+
 END_NAMESPACE;
