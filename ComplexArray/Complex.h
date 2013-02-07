@@ -40,6 +40,8 @@ public:
 	property double Ang{ double get(){return Math::Atan2(Imag, Real);}}
 	property Complex^ Conj{ Complex^ get(); }
 
+	virtual String^ ToString()override;
+
       ////////////////////////////////////
 	 // Opreators
 	////////////////////////////////////
