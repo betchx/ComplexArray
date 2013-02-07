@@ -4,6 +4,7 @@
 
 #include "ComplexArray.h"
 #include <memory>
+#include <cmath>
 
 
 BEGIN_NAMESPACE;
