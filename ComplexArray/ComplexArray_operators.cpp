@@ -9,7 +9,7 @@ BEGIN_NAMESPACE;
 ComplexArray^ ComplexArray::operator +(ComplexArray^ lhs, double rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] + rhs;
@@ -26,7 +26,7 @@ ComplexArray^ ComplexArray::operator +(double lhs, ComplexArray^ rhs)
 ComplexArray^ ComplexArray::operator +(ComplexArray^ lhs, Complex^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] + rhs;
@@ -45,7 +45,7 @@ ComplexArray^ ComplexArray::operator +(ComplexArray^ lhs, ComplexArray^ rhs)
   // Size Check
   if(lhs->size_ != rhs->size_) throw gcnew ArgumentException("Need same length ComplexArrays.");
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] + rhs[i];
@@ -58,7 +58,7 @@ ComplexArray^ ComplexArray::operator +(ComplexArray^ lhs, ComplexArray^ rhs)
 ComplexArray^ ComplexArray::operator *(ComplexArray^ lhs, double rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] * rhs;
@@ -75,7 +75,7 @@ ComplexArray^ ComplexArray::operator *(double lhs, ComplexArray^ rhs)
 ComplexArray^ ComplexArray::operator *(ComplexArray^ lhs, Complex^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] * rhs;
@@ -94,7 +94,7 @@ ComplexArray^ ComplexArray::operator *(ComplexArray^ lhs, ComplexArray^ rhs)
   // Size Check
   if(lhs->size_ != rhs->size_) throw gcnew ArgumentException("Need same length ComplexArrays.");
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] * rhs[i];
@@ -105,7 +105,7 @@ ComplexArray^ ComplexArray::operator *(ComplexArray^ lhs, ComplexArray^ rhs)
 ComplexArray^ ComplexArray::operator -(ComplexArray^ lhs, double rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] - rhs;
@@ -116,7 +116,7 @@ ComplexArray^ ComplexArray::operator -(ComplexArray^ lhs, double rhs)
 ComplexArray^ ComplexArray::operator -(double lhs, ComplexArray^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(rhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(rhs->size_/2, false);
   // Apply operation
   for(int i = 0; i < res->Length; ++i){
     res[i] = lhs - rhs[i];
@@ -128,7 +128,7 @@ ComplexArray^ ComplexArray::operator -(double lhs, ComplexArray^ rhs)
 ComplexArray^ ComplexArray::operator -(ComplexArray^ lhs, Complex^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] - rhs;
@@ -139,7 +139,7 @@ ComplexArray^ ComplexArray::operator -(ComplexArray^ lhs, Complex^ rhs)
 ComplexArray^ ComplexArray::operator -(Complex^ lhs, ComplexArray^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(rhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(rhs->size_/2, false);
   // Apply operation
   for(int i = 0; i < res->Length; ++i){
     res[i] = lhs - rhs[i];
@@ -153,7 +153,7 @@ ComplexArray^ ComplexArray::operator -(ComplexArray^ lhs, ComplexArray^ rhs)
   // Size Check
   if(lhs->size_ != rhs->size_) throw gcnew ArgumentException("Need same length ComplexArrays.");
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] - rhs[i];
@@ -164,7 +164,7 @@ ComplexArray^ ComplexArray::operator -(ComplexArray^ lhs, ComplexArray^ rhs)
 ComplexArray^ ComplexArray::operator /(ComplexArray^ lhs, double rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] / rhs;
@@ -175,7 +175,7 @@ ComplexArray^ ComplexArray::operator /(ComplexArray^ lhs, double rhs)
 ComplexArray^ ComplexArray::operator /(double lhs, ComplexArray^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(rhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(rhs->size_/2, false);
   // Apply operation
   for(int i = 0; i < res->Length; ++i){
     res[i] = lhs / rhs[i];
@@ -187,7 +187,7 @@ ComplexArray^ ComplexArray::operator /(double lhs, ComplexArray^ rhs)
 ComplexArray^ ComplexArray::operator /(ComplexArray^ lhs, Complex^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] / rhs;
@@ -198,7 +198,7 @@ ComplexArray^ ComplexArray::operator /(ComplexArray^ lhs, Complex^ rhs)
 ComplexArray^ ComplexArray::operator /(Complex^ lhs, ComplexArray^ rhs)
 {
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(rhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(rhs->size_/2, false);
   // Apply operation
   for(int i = 0; i < res->Length; ++i){
     res[i] = lhs / rhs[i];
@@ -212,7 +212,7 @@ ComplexArray^ ComplexArray::operator /(ComplexArray^ lhs, ComplexArray^ rhs)
   // Size Check
   if(lhs->size_ != rhs->size_) throw gcnew ArgumentException("Need same length ComplexArrays.");
   // allocate results without initialization
-  ComplexArray^ res = gcnew ComplexArray(lhs->size_, false);
+  ComplexArray^ res = gcnew ComplexArray(lhs->size_/2, false);
   // Apply operation and return
   for(int i = 0; i < lhs->Length; ++i){
     res[i] = lhs[i] / rhs[i];
