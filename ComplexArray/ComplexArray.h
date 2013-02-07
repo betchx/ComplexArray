@@ -108,6 +108,13 @@ public:
 	ComplexArray^ fft();
 	ComplexArray^ ifft();
 
+    // Property will return IEnumerable
+    property IEnumerable<double>^ Abs{ IEnumerable<double>^ get();}
+    property IEnumerable<double>^ Ang{ IEnumerable<double>^ get();}
+    property IEnumerable<double>^ Power{ IEnumerable<double>^ get();}
+
+
+    // start with small letter mean function which return array<double>
     array<double>^ abs();
     array<double>^ ang();
     array<double>^ power();
