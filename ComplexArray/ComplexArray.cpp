@@ -18,14 +18,20 @@ ComplexArray::!ComplexArray()
 	fftw_free(data_);
 }
 
-ComplexArray::ComplexArray(int length, bool zero_clear /*= false*/)
+ComplexArray::ComplexArray(int length, bool zero_clear)
 {
 	size_ = length * 2;
 	allocate();
 	if(zero_clear)
-		memset(data_, 0, buf_size_); // init by zero
+		memset(data_, 0, buf_size_); // init by zero if specified
 }
 
+ComplexArray::ComplexArray(int length)
+{
+	size_ = length * 2;
+	allocate();
+    memset(data_, 0, buf_size_); // init by zero
+}
 
 ComplexArray::ComplexArray(array<double>^ arr)
 {
