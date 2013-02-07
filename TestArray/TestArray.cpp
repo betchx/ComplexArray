@@ -104,7 +104,7 @@ void test_operator_plus_equal_double()
 	ENTER(L"OP += double");
 	array<double>^ arr = {0.0, 1.0, 2.0, 3.0};
 
-	ComplexArray ca(arr);
+	ComplexArray^ ca = gcnew ComplexArray(arr);
 
 	ca += 5.0;
 
@@ -119,7 +119,7 @@ void test_operator_plus_double()
 	ENTER(L"OP + double");
 	array<double>^ arr = {0.0, 1.0, 2.0, 3.0};
 
-	ComplexArray ca0(arr);
+	ComplexArray^ ca0 = gcnew ComplexArray(arr);
 
 	ComplexArray^ ca =  ca0 + 5.0;
 
@@ -139,7 +139,7 @@ void test_operator_plus_equal_complex()
 	ENTER(L"OP += Complex");
 	array<double>^ arr = {0.0, 1.0, 2.0, 3.0};
 
-	ComplexArray ca(arr);
+	ComplexArray^ ca = gcnew ComplexArray(arr);
 
 	Complex c(5.0, -5.0);
 
@@ -155,7 +155,7 @@ void test_operator_plus_complex()
 	ENTER(L"OP + Complex");
 	array<double>^ arr = {0.0, 1.0, 2.0, 3.0};
 
-	ComplexArray ca0(arr);
+	ComplexArray^ ca0 = gcnew ComplexArray(arr);
 	Complex c(5.0, -5.0);
 	ComplexArray^ ca =  ca0 + c;
 
@@ -822,7 +822,7 @@ void test_operator_plus_equal_complex_array()
 	array<double>^ ans = {8.0, 7.0, 6.0, 5.0};
 	array<double>^ differ = {9.9, 8.8};
 
-	ComplexArray ca(arr);
+	ComplexArray^ ca = gcnew ComplexArray(arr);
 	ComplexArray o(opr);
 	ca += o;
 

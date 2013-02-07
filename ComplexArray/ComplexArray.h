@@ -68,65 +68,35 @@ public:
 	ComplexArray^ real_assign(IEnumerable<double>^ c);
 	ComplexArray^ imag_assign(IEnumerable<double>^ c);
 
-	// used for C++ and implimentation (hidden from CLR)
-	ComplexArray^ operator+=(double d);
-	ComplexArray^ operator+=(Complex^ c);
-	ComplexArray^ operator+=(Complex% c);
-	ComplexArray^ operator+=(ComplexArray^ ca);
-	ComplexArray^ operator+=(ComplexArray% ca);
-
-	ComplexArray^ operator+(double d);
-	ComplexArray^ operator+(Complex^ c);
-	ComplexArray^ operator+(ComplexArray^ ca);
-	ComplexArray^ operator+(Complex% c);
-	ComplexArray^ operator+(ComplexArray% ca);
+	static operator ComplexArray^ (ComplexArray %ca){return %ca;}
 
     // Definitions of operator +
+    static ComplexArray^ operator +(ComplexArray^ lhs, double rhs);
     static ComplexArray^ operator +(double lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator +(double lhs, ComplexArray% rhs);
+    static ComplexArray^ operator +(ComplexArray^ lhs, Complex^ rhs);
     static ComplexArray^ operator +(Complex^ lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator +(Complex^ lhs, ComplexArray% rhs);
-    static ComplexArray^ operator +(Complex% lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator +(Complex% lhs, ComplexArray% rhs);
+    static ComplexArray^ operator +(ComplexArray^ lhs, ComplexArray^ rhs);
 
     // Definitions of operator *
-    ComplexArray^ operator *(double rhs);
+    static ComplexArray^ operator *(ComplexArray^ lhs, double rhs);
     static ComplexArray^ operator *(double lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator *(double lhs, ComplexArray% rhs);
-    ComplexArray^ operator *(Complex^ rhs);
+    static ComplexArray^ operator *(ComplexArray^ lhs, Complex^ rhs);
     static ComplexArray^ operator *(Complex^ lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator *(Complex^ lhs, ComplexArray% rhs);
-    ComplexArray^ operator *(Complex% rhs);
-    static ComplexArray^ operator *(Complex% lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator *(Complex% lhs, ComplexArray% rhs);
-    ComplexArray^ operator *(ComplexArray^ rhs);
-    ComplexArray^ operator *(ComplexArray% rhs);
+    static ComplexArray^ operator *(ComplexArray^ lhs, ComplexArray^ rhs);
 
     // Definitions of operator -
-    ComplexArray^ operator -(double rhs);
+    static ComplexArray^ operator -(ComplexArray^ lhs, double rhs);
     static ComplexArray^ operator -(double lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator -(double lhs, ComplexArray% rhs);
-    ComplexArray^ operator -(Complex^ rhs);
+    static ComplexArray^ operator -(ComplexArray^ lhs, Complex^ rhs);
     static ComplexArray^ operator -(Complex^ lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator -(Complex^ lhs, ComplexArray% rhs);
-    ComplexArray^ operator -(Complex% rhs);
-    static ComplexArray^ operator -(Complex% lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator -(Complex% lhs, ComplexArray% rhs);
-    ComplexArray^ operator -(ComplexArray^ rhs);
-    ComplexArray^ operator -(ComplexArray% rhs);
+    static ComplexArray^ operator -(ComplexArray^ lhs, ComplexArray^ rhs);
 
     // Definitions of operator /
-    ComplexArray^ operator /(double rhs);
+    static ComplexArray^ operator /(ComplexArray^ lhs, double rhs);
     static ComplexArray^ operator /(double lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator /(double lhs, ComplexArray% rhs);
-    ComplexArray^ operator /(Complex^ rhs);
+    static ComplexArray^ operator /(ComplexArray^ lhs, Complex^ rhs);
     static ComplexArray^ operator /(Complex^ lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator /(Complex^ lhs, ComplexArray% rhs);
-    ComplexArray^ operator /(Complex% rhs);
-    static ComplexArray^ operator /(Complex% lhs, ComplexArray^ rhs);
-    static ComplexArray^ operator /(Complex% lhs, ComplexArray% rhs);
-    ComplexArray^ operator /(ComplexArray^ rhs);
-    ComplexArray^ operator /(ComplexArray% rhs);
+    static ComplexArray^ operator /(ComplexArray^ lhs, ComplexArray^ rhs);
 
 	// Operation
 
