@@ -228,7 +228,7 @@ ComplexArray^ ComplexArray::imag_assign(IEnumerable<double>^ c)
 // Operations
 ComplexArray^ ComplexArray::fft()
 {
-	ComplexArray^ ans = gcnew ComplexArray(size_, false);
+	ComplexArray^ ans = gcnew ComplexArray(Length, false);
 
 	fftw_plan plan = fftw_plan_dft_1d(
 		Length,                        // Data size
@@ -244,7 +244,7 @@ ComplexArray^ ComplexArray::fft()
 
 ComplexArray^ ComplexArray::ifft()
 {
-	ComplexArray^ ans = gcnew ComplexArray(size_, false);
+	ComplexArray^ ans = gcnew ComplexArray(Length, false);
 	fftw_plan plan = fftw_plan_dft_1d(
 		Length,                        // Data size
 		(fftw_complex*)(data_),        // input
