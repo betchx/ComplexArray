@@ -17,12 +17,14 @@ protected:
 	double real_;
 	double imag_;
 
+public protected:
+    Complex(double* ptr);
+
 public:
 	Complex();
 	Complex(double re, double im);
 	Complex(double re);
 //	Complex(Complex% c);
-	Complex(double* ptr);
 	Complex(Complex^ c);
 
 	property double Real

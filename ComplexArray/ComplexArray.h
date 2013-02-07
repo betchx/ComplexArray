@@ -21,14 +21,18 @@ public ref class ComplexArray : IEnumerable<ComplexView^>
 	double* begin();
 	double* end();
 
+public protected:
+	ComplexArray(double* data, int size):data_(data),size_(size){}
+	ComplexArray(const ComplexArray% other);
+
+
 public:
 	virtual ~ComplexArray();
 	!ComplexArray();
 	ComplexArray(array<double>^ arr);
-	ComplexArray(double* data, int size):data_(data),size_(size){}
 	ComplexArray(const ComplexArray^ other);
 	ComplexArray(int length, bool zero_clear);
-	ComplexArray(const ComplexArray% other);
+
 	static ComplexArray^ real(int size, IEnumerable<double> ^ e);
 	static ComplexArray^ real(IEnumerable<double> ^ e);
 	static ComplexArray^ real(array<double>^ arr);
