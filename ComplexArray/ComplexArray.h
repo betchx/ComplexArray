@@ -108,6 +108,10 @@ public:
 	ComplexArray^ fft();
 	ComplexArray^ ifft();
 
+    array<double>^ abs();
+    array<double>^ ang();
+    array<double>^ power();
+
 };
 
 END_NAMESPACE

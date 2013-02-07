@@ -258,4 +258,43 @@ ComplexArray^ ComplexArray::ifft()
 }
 
 
+array<double>^ ComplexArray::abs()
+{
+  int n = Length;
+  array<double>^ res = gcnew array<double>(n);
+  for(int i = 0; i < n; ++i)
+  {
+    double re = data_[2*i  ];
+    double im = data_[2*i+1];
+    res[i] = sqrt(re*re+im*im);
+  }
+  return res;
+}
+
+array<double>^ ComplexArray::power()
+{
+  int n = Length;
+  array<double>^ res = gcnew array<double>(n);
+  for(int i = 0; i < n; ++i)
+  {
+    double re = data_[2*i];
+    double im = data_[2*i+1];
+    res[i] = re*re+im*im;
+  }
+  return res;
+}
+
+array<double>^ ComplexArray::ang()
+{
+  int n = Length;
+  array<double>^ res = gcnew array<double>(n);
+  for(int i = 0; i < n; ++i)
+  {
+    double re = data_[2*i];
+    double im = data_[2*i+1];
+    res[i] = atan2(re,im);
+  }
+  return res;
+}
+
 END_NAMESPACE;
