@@ -40,12 +40,16 @@ public:
 	virtual ~ComplexEnumerator();
 };
 
-ref class ComplexEnum : ComplexEnumerator, IEnumerable<ComplexView^>
+ref class ComplexEnum : ViewEnumerator<Complex^>, IEnumerable<Complex^>
 {
 public:
+	virtual property Complex^ Current
+	{
+		Complex^ get()override;
+	}
 	ComplexEnum(double* base, int size);
 	virtual ~ComplexEnum();
-	virtual IEnumerator<ComplexView^>^ GetEnumerator(){return this;}
+	virtual IEnumerator<Complex^>^ GetEnumerator(){return this;}
 
 	virtual System::Collections::IEnumerator^ GetObjEnumerator()
 		= System::Collections::IEnumerable::GetEnumerator

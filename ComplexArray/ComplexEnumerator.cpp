@@ -26,11 +26,18 @@ ViewEnumerator<T>::~ViewEnumerator()
 {}
 
 ComplexEnum::ComplexEnum(double* base, int size)
-	:ComplexEnumerator(base, size)
+	:ViewEnumerator(base, size)
 {}
 
 ComplexEnum::~ComplexEnum()
 {}
+
+Complex^ ComplexEnum::Current::get()
+{
+	if(ptr == first || ptr >= last)
+		throw gcnew InvalidOperationException();
+	return gcnew ComplexView(ptr);
+}
 
 // 
 
