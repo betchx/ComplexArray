@@ -67,7 +67,7 @@ public:
 	virtual ~ComplexElementEnum();
 
 	virtual IEnumerator<double>^ GetEnumerator()
-	  {return this;}
+	{return this;}
 
 	virtual System::Collections::IEnumerator^ GetObjEnumerator()
 		= System::Collections::IEnumerable::GetEnumerator
@@ -77,95 +77,78 @@ public:
 
 //---------------------------------------------------//
 
-interface struct ICConverter
-{
-  double operator()(double re, double im);
-};
 
-ref class ConvEnumerator : IEnumerator<double>
+template<typename Conv>
+private ref class ConvEnum : IEnumerator<double>, IEnumerable<double>
 {
-  double *r_, *i_, *begin_, *end_;
-  int size_;
-  ICConverter^ conv_;
+	double *r_, *i_, *begin_, *end_;
+	int size_;
 public:
-  ConvEnumerator(double* ptr, int size, ICConverter^ conv)
-    :r_(ptr-2), i_(ptr-1), begin_(ptr-2), end_(ptr+size),size_(size),conv_(conv)
-  {}
+	ConvEnum(double* ptr, int size)
+		:r_(ptr-2), i_(ptr-1), begin_(ptr-2), end_(ptr+size),size_(size)
+	{}
 
-  virtual ~ConvEnumerator(){}
+	virtual ~ConvEnum(){}
 
 	virtual bool MoveNext()
-    {
-      r_+=2;
-      i_+=2;
-      return r_ < end_;
-    }
+	{
+		r_+=2;
+		i_+=2;
+		return r_ < end_;
+	}
 	virtual void Reset()
-    {
-      r_ = begin_;
-      i_ = begin_+1;
-    }
+	{
+		r_ = begin_;
+		i_ = begin_+1;
+	}
 	virtual System::Object^ ObjCurrent() = System::Collections::IEnumerator::Current::get
 	{ 
 		return Current;
 	}
 	virtual property double Current
 	{
-      double get()
-      {
-         return conv_(*r_, *i_);
-      }
+		double get()
+		{
+			return Conv::convert(*r_, *i_);
+		}
 	}  
+
+	virtual IEnumerator<double>^ GetEnumerator()
+	{
+		return this;
+	}
+
+	virtual System::Collections::IEnumerator^ GetObjEnumerator()
+		= System::Collections::IEnumerable::GetEnumerator
+	{return GetEnumerator();} 
+
 };
 
-ref class ConvEnumerable : IEnumerable<double>
+private struct AbsConv
 {
-  double* ptr_;
-  int size_;
-  ICConverter^ conv_;
-
-public:
-  ConvEnumerable(double* ptr, int size, ICConverter^ conv)
-    :ptr_(ptr), size_(size),conv_(conv)
-  {}
-
-  virtual IEnumerator<double>^ GetEnumerator()
-  {
-    return gcnew ConvEnumerator(ptr_, size_, conv_);
-  }
-
-  virtual System::Collections::IEnumerator^ GetObjEnumerator()
-    = System::Collections::IEnumerable::GetEnumerator
-  {return GetEnumerator();} 
-
+	static double convert(const double& re, const double& im) 
+	{
+		return sqrt(re*re+im*im);
+	}
 };
 
-ref class AbsConv : ICConverter
+private struct PowerConv
 {
-public:
-  virtual double operator()(double re, double im) 
-  {
-    return sqrt(re*re+im*im);
-  }
+	static double convert(const double& re, const double& im) 
+	{
+		return re*re+im*im;
+	}
 };
 
-ref class PowerConv : ICConverter
+private struct AngConv
 {
-public:
-  virtual double operator()(double re, double im) 
-  {
-    return re*re+im*im;
-  }
+	static double convert(const double& re, const double& im) 
+	{
+		return atan2(re,im);
+	}
 };
 
-ref class AngConv : ICConverter
-{
-public:
-  virtual double operator()(double re, double im) 
-  {
-    return atan2(re,im);
-  }
-};
+
 
 
 END_NAMESPACE;

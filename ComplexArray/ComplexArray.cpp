@@ -277,15 +277,15 @@ ComplexArray^ ComplexArray::ifft()
 
 IEnumerable<double>^ ComplexArray::Abs::get()
 {
-  return gcnew  ConvEnumerable(data_, size_, gcnew AbsConv());
+  return gcnew  ConvEnum<AbsConv>(data_, size_);
 }
 IEnumerable<double>^ ComplexArray::Power::get()
 {
-  return gcnew  ConvEnumerable(data_, size_, gcnew PowerConv());
+  return gcnew  ConvEnum<PowerConv>(data_, size_);
 }
 IEnumerable<double>^ ComplexArray::Ang::get()
 {
-  return gcnew  ConvEnumerable(data_, size_, gcnew AngConv());
+  return gcnew  ConvEnum<AngConv>(data_, size_);
 }
 
 array<double>^ ComplexArray::abs()
