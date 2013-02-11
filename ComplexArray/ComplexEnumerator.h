@@ -149,6 +149,27 @@ private struct AngConv
 };
 
 
+private ref class ArrayEnum : IEnumerator<double>, IEnumerable<double>
+{
+	double* base_;
+	double* begin_;
+	double* curr_;
+	double* end_;
+public:
+	ArrayEnum(double* base, int size):base_(base), begin_(base-1), end_(base+size), curr_(base-1)
+	{}
+	virtual ~ArrayEnum(){}
+
+	virtual property double Current{ double get(){return *curr_;}}
+	virtual bool MoveNext(){ curr_ += 1; return curr_ < end_;}
+	virtual void Reset(){curr_ = begin_;}
+	virtual IEnumerator<double>^ GetEnumerator(){return this;}
+
+	virtual System::Object^ ObjCurrent() = System::Collections::IEnumerator::Current::get
+	{return Current;}
+	virtual System::Collections::IEnumerator^ GetObjEnum() = System::Collections::IEnumerable::GetEnumerator
+	{return this;}
+};
 
 
 END_NAMESPACE;
