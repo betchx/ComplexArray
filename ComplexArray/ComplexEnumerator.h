@@ -5,7 +5,7 @@
 BEGIN_NAMESPACE;
 
 generic <typename T> 
-ref class ViewEnumerator abstract : IEnumerator<T>
+private ref class ViewEnumerator abstract : IEnumerator<T>
 {
 protected:
 	double* ptr;
@@ -29,7 +29,7 @@ public:
 };
 
 
-ref class ComplexEnumerator : ViewEnumerator<ComplexView^>
+private ref class ComplexEnumerator : ViewEnumerator<ComplexView^>
 {
 public:
 	virtual property ComplexView^ Current
@@ -54,7 +54,7 @@ public:
 
 //------------------------------------------------//
 
-ref class ComplexElementEnum : ViewEnumerator<double>, IEnumerable<double>
+private ref class ComplexElementEnum : ViewEnumerator<double>, IEnumerable<double>
 {
 public:
 	virtual property double Current
