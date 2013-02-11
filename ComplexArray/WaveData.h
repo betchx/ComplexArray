@@ -73,6 +73,7 @@ public:
 	void clear_wave();
 	void clear_sp();
 
+	bool is_dirty(){ return dirty_wave_ || dirty_sp_;}
 
 	// Convolution
 	static WaveData^ operator * (WaveData^ lhs, WaveData^ rhs);
