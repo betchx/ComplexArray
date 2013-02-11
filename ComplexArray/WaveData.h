@@ -85,6 +85,7 @@ private:
 		[Test] void PulseFFT();
 		[Test] void Spectrum();
 		[Test] void Wave();
+		[Test] void Convolution();
 	};
 };
 

@@ -139,6 +139,7 @@ void WaveData::update_wave()
 {
 	if(dirty_wave_ && ! dirty_sp_ && s2w_){
 		fftw_execute(s2w_);
+		std::transform(begin(), end(), begin(), std::bind2nd(std::divides<double>(), (double)length_));
 		dirty_wave_ = false;
 	}
 }
@@ -157,7 +158,7 @@ WaveData^ WaveData::operator * (WaveData^ lhs, WaveData^ rhs)
 	lhs->update_sp();
 	rhs->update_sp();
 	WaveData^ res = gcnew WaveData(lhs->Length);
-	for(int i = 0; i < lhs->Length; ++i)
+	for(int i = 0; i < lhs->SpLength; ++i)
 	{
 		res->sp[i] = (lhs->sp[i]) * (rhs->sp[i]);
 	}
@@ -356,6 +357,19 @@ void WaveData::Test::Spectrum()
 	Assert::AreEqual(arr[9], we->Current->Imag, 0.000001);
     Assert::False(ce->MoveNext());
 	Assert::False(we->MoveNext());
+}
+
+void WaveData::Test::Convolution()
+{
+	array<double>^ wave =   { 1.0,  0.7,  0.0, -0.7, -1.0, -0.7,  0.0,  0.7};
+	array<double>^ tgt  =   { 0.0,  1.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0}; 
+	array<double>^ answer = { 0.7,  1.0,  0.7,  0.0, -0.7, -1.0, -0.7,  0.0};
+    WaveData^ f = gcnew WaveData(wave);
+	WaveData^ g = gcnew WaveData(tgt);
+	WaveData^ res = f * g;
+	for(int i =0; i < 8; ++i){
+		Assert::AreEqual(answer[i], res->Wave[i], 0.00001, (i).ToString());
+	}
 }
 
 END_NAMESPACE;
