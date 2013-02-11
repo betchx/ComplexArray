@@ -194,8 +194,8 @@ void WaveData::Spectrum::set(IEnumerable<Complex^>^ arr)
 
 
 // property Wave
-double WaveData::Wave::get(int idx){update_wave();return wave_[idx];}
-void WaveData::Wave::set(int idx, double value){ wave_[idx] = value; wave_updated();}
+double WaveData::default::get(int idx){update_wave();return wave_[idx];}
+void WaveData::default::set(int idx, double value){ wave_[idx] = value; wave_updated();}
 IEnumerable<double>^ WaveData::Wave::get(){return gcnew ArrayEnum(wave_, length_);}
 void WaveData::Wave::set(IEnumerable<double>^ arr)
 {
@@ -266,7 +266,7 @@ void WaveData::Test::CreateByArray()
 	Assert::True(wd.dirty_sp_);
 	for(int i = 0; i < arr->Length; ++i)
 	{
-		Assert::AreEqual(arr[i], wd.Wave[i], 0.0001);
+		Assert::AreEqual(arr[i], wd[i], 0.0001);
 	}
 }
 
@@ -323,10 +323,10 @@ void WaveData::Test::PulseFFT()
 
 	for(int i = 0; i < n; ++i)
 	{
-		Assert::AreEqual(0.0, wd.Wave[i], 0.0001);
+		Assert::AreEqual(0.0, wd[i], 0.0001);
 	}
 
-	wd.Wave[0] = 1.0;
+	wd[0] = 1.0;
 	Assert::False(wd.dirty_wave_);
 	Assert::True(wd.dirty_sp_);
 	wd.Real[0];
@@ -421,24 +421,24 @@ void WaveData::Test::WaveAssign()
 	wd->Wave = arr;
 	for(int i = 0; i < 8; ++i)
 	{
-		Assert::AreEqual(arr[i], wd->Wave[i], 0.00001);
+		Assert::AreEqual(arr[i], wd[i], 0.00001);
 	}
 
 	wd = gcnew WaveData(6);
 	wd->Wave = arr;
 	for(int i = 0; i < 6; ++i)
 	{
-		Assert::AreEqual(arr[i], wd->Wave[i], 0.0001);
+		Assert::AreEqual(arr[i], wd[i], 0.0001);
 	}
 	wd = gcnew WaveData(10);
 	wd->clear_wave();
 	wd->Wave = arr;
 	for(int i = 0; i < 8; ++i)
 	{
-		Assert::AreEqual(arr[i], wd->Wave[i], 0.00001);
+		Assert::AreEqual(arr[i], wd[i], 0.00001);
 	}
-	Assert::AreEqual(0.0, wd->Wave[8], 0.00001);
-	Assert::AreEqual(0.0, wd->Wave[9], 0.00001);
+	Assert::AreEqual(0.0, wd[8], 0.00001);
+	Assert::AreEqual(0.0, wd[9], 0.00001);
 
 }
 
@@ -451,7 +451,7 @@ void WaveData::Test::Convolution()
 	WaveData^ g = gcnew WaveData(tgt);
 	WaveData^ res = f * g;
 	for(int i =0; i < 8; ++i){
-		Assert::AreEqual(answer[i], res->Wave[i], 0.00001, (i).ToString());
+		Assert::AreEqual(answer[i], res[i], 0.00001, (i).ToString());
 	}
 }
 
