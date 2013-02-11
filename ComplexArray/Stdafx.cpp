@@ -3,3 +3,8 @@
 // stdafx.obj にはプリコンパイル済み型情報が含まれます。
 
 #include "stdafx.h"
+
+namespace std{
+	// VC hasn't int version of to_string
+	string to_string(int val){return to_string((long long)val);}
+}
