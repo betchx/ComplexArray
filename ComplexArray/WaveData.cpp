@@ -50,7 +50,7 @@ WaveData::WaveData(ComplexArray^ carr)
 	}
 	allocate(len);
 	double* ptr = sp_->dbl_begin();
-	IEnumerator<ComplexArrayLib::ComplexView^>^ e = carr->GetEnumerator();
+	IEnumerator<ComplexArrayLib::Complex^>^ e = carr->GetEnumerator();
 	double* end = sp_->dbl_end();
 	while(e->MoveNext() && ptr != end)
 	{
@@ -355,7 +355,7 @@ void WaveData::Test::Spectrum()
 	WaveData wd(carr);
 	Assert::AreEqual(8, wd.Length);
 	Assert::AreEqual(5, System::Linq::Enumerable::Count(wd.Spectrum));
-	IEnumerator<ComplexView^>^ ce = carr.GetEnumerator();
+	IEnumerator<Complex^>^ ce = carr.GetEnumerator();
 	IEnumerator<Complex^>^ we = wd.Spectrum->GetEnumerator();
 	Assert::True(ce->MoveNext());
 	Assert::True(we->MoveNext());

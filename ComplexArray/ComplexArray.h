@@ -10,7 +10,7 @@
 BEGIN_NAMESPACE;
 
 
-public ref class ComplexArray : IEnumerable<ComplexView^>
+public ref class ComplexArray : IEnumerable<Complex^>
 {
 	double* data_;  // begin();
 	double* end_;
@@ -42,7 +42,7 @@ public:
 	static ComplexArray^ imag(IEnumerable<double> ^ e);
 	static ComplexArray^ imag(array<double>^ arr);
 
-	virtual IEnumerator<ComplexView^>^ GetEnumerator();
+	virtual IEnumerator<Complex^>^ GetEnumerator();
 	virtual System::Collections::IEnumerator^ GetObjEnumerator()
 		= System::Collections::IEnumerable::GetEnumerator;
 

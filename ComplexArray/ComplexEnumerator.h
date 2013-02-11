@@ -29,12 +29,12 @@ public:
 };
 
 
-private ref class ComplexEnumerator : ViewEnumerator<ComplexView^>
+private ref class ComplexEnumerator : ViewEnumerator<Complex^>
 {
 public:
-	virtual property ComplexView^ Current
+	virtual property Complex^ Current
 	{
-		ComplexView^ get()override;
+		Complex^ get()override;
 	}
 	ComplexEnumerator(double* base, int size);
 	virtual ~ComplexEnumerator();

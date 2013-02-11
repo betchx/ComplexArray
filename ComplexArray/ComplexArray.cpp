@@ -209,7 +209,7 @@ ComplexArray^ ComplexArray::imag(array<double>^ arr)
 }
 
 
-IEnumerator<ComplexView^>^ ComplexArray::GetEnumerator()
+IEnumerator<Complex^>^ ComplexArray::GetEnumerator()
 {
 	return gcnew ComplexEnumerator(data_, size_);
 }

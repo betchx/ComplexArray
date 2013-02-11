@@ -41,7 +41,7 @@ Complex^ ComplexEnum::Current::get()
 
 // 
 
-ComplexView^ ComplexEnumerator::Current::get()
+Complex^ ComplexEnumerator::Current::get()
 {
 	if(ptr == first || ptr >= last)
 		throw gcnew InvalidOperationException();
