@@ -170,13 +170,44 @@ WaveData^ WaveData::operator * (WaveData^ lhs, WaveData^ rhs)
 
 
 // property Spectrum
-IEnumerable<ComplexView^>^ WaveData::Spectrum::get(){return gcnew ComplexEnum(sp_->dbl_begin(), sp_->size() * 2); }
+Complex^ WaveData::Spectrum::get(int idx){ return gcnew ComplexView(sp_->dbl_begin() + idx * 2);}
+void WaveData::Spectrum::set(int idx, Complex^ value)
+{
+	std::complex<double>& c = sp_->at(idx);
+	c.real(value->Real);
+	c.imag(value->Imag);
+}
+IEnumerable<Complex^>^ WaveData::Spectrum::get(){return gcnew ComplexEnum(sp_->dbl_begin(), sp_->size() * 2); }
+void WaveData::Spectrum::set(IEnumerable<Complex^>^ arr)
+{
+	auto e = arr->GetEnumerator();
+    auto it = sp_->begin();
+	auto end_ = sp_->end();
+	while( e->MoveNext() && it < end_)
+	{
+		it->real(e->Current->Real);
+		it->imag(e->Current->Imag);
+		++it;
+	}
+	sp_updated();
+}
 
 
 // property Wave
 double WaveData::Wave::get(int idx){update_wave();return wave_[idx];}
 void WaveData::Wave::set(int idx, double value){ wave_[idx] = value; wave_updated();}
 IEnumerable<double>^ WaveData::Wave::get(){return gcnew ArrayEnum(wave_, length_);}
+void WaveData::Wave::set(IEnumerable<double>^ arr)
+{
+	auto e = arr->GetEnumerator();
+	double* ptr = begin();
+	double* end_ = end();
+	while( e->MoveNext() && ptr < end_)
+	{
+		*(ptr++) = e->Current;
+	}
+	wave_updated();
+}
 
 // property Real
 double WaveData::Real::get(int idx){update_sp(); return sp_->at(idx).real();}
@@ -192,6 +223,7 @@ IEnumerable<double>^ WaveData::Imag::get(){return gcnew ComplexElementEnum(sp_->
 IEnumerable<double>^ WaveData::Abs::get(){return gcnew ConvEnum<AbsConv>(sp_->dbl_begin(), sp_->size());}
 IEnumerable<double>^ WaveData::Ang::get(){return gcnew ConvEnum<AngConv>(sp_->dbl_begin(), sp_->size());}
 IEnumerable<double>^ WaveData::Power::get(){return gcnew ConvEnum<PowerConv>(sp_->dbl_begin(), sp_->size());}
+
 
 
 //Test
@@ -324,7 +356,7 @@ void WaveData::Test::Spectrum()
 	Assert::AreEqual(8, wd.Length);
 	Assert::AreEqual(5, System::Linq::Enumerable::Count(wd.Spectrum));
 	IEnumerator<ComplexView^>^ ce = carr.GetEnumerator();
-	IEnumerator<ComplexView^>^ we = wd.Spectrum->GetEnumerator();
+	IEnumerator<Complex^>^ we = wd.Spectrum->GetEnumerator();
 	Assert::True(ce->MoveNext());
 	Assert::True(we->MoveNext());
 	Assert::AreEqual(ce->Current->Real, we->Current->Real, 0.000001);
@@ -359,6 +391,34 @@ void WaveData::Test::Spectrum()
 	Assert::False(we->MoveNext());
 }
 
+void WaveData::Test::WaveAssign()
+{
+	array<double>^ arr = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};
+	WaveData^ wd = gcnew WaveData(arr->Length);
+	wd->Wave = arr;
+	for(int i = 0; i < 8; ++i)
+	{
+		Assert::AreEqual(arr[i], wd->Wave[i], 0.00001);
+	}
+
+	wd = gcnew WaveData(6);
+	wd->Wave = arr;
+	for(int i = 0; i < 6; ++i)
+	{
+		Assert::AreEqual(arr[i], wd->Wave[i], 0.0001);
+	}
+	wd = gcnew WaveData(10);
+	wd->clear_wave();
+	wd->Wave = arr;
+	for(int i = 0; i < 8; ++i)
+	{
+		Assert::AreEqual(arr[i], wd->Wave[i], 0.00001);
+	}
+	Assert::AreEqual(0.0, wd->Wave[8], 0.00001);
+	Assert::AreEqual(0.0, wd->Wave[9], 0.00001);
+
+}
+
 void WaveData::Test::Convolution()
 {
 	array<double>^ wave =   { 1.0,  0.7,  0.0, -0.7, -1.0, -0.7,  0.0,  0.7};
@@ -371,5 +431,6 @@ void WaveData::Test::Convolution()
 		Assert::AreEqual(answer[i], res->Wave[i], 0.00001, (i).ToString());
 	}
 }
+
 
 END_NAMESPACE;

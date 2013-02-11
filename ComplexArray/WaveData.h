@@ -51,15 +51,16 @@ public protected: // only in c++/cli
 public:
 	virtual ~WaveData(void);
 
-	property int Length {  int get();}
-	property int WaveLength {  int get();}
-	property int SpLength {  int get();}
+	property int Length{ int get();}
+	property int WaveLength { int get();}
+	property int SpLength { int get();}
+	property Complex^ Spectrum[int]{ Complex^ get(int idx); void set(int idx, Complex^ value);}
 	property double Wave[int]{ double get(int idx); void set(int idx, double value);}
 	property double Real[int]{ double get(int idx); void set(int idx, double value);}
 	property double Imag[int]{ double get(int idx); void set(int idx, double value);}
 
-	property IEnumerable<ComplexView^>^  Spectrum{ IEnumerable<ComplexView^>^ get(); }
-	property IEnumerable<double>^ Wave{ IEnumerable<double>^ get();}
+	property IEnumerable<Complex^>^  Spectrum{ IEnumerable<Complex^>^ get(); void set(IEnumerable<Complex^>^ e); }
+	property IEnumerable<double>^ Wave{ IEnumerable<double>^ get(); void set(IEnumerable<double>^ e);}
 	property IEnumerable<double>^ Real{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Imag{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Abs{ IEnumerable<double>^ get();}
@@ -74,6 +75,7 @@ public:
 	// Convolution
 	static WaveData^ operator * (WaveData^ lhs, WaveData^ rhs);
 
+
 private:
 	[TestFixture] // ref class can contain test
 	ref class Test{
@@ -85,6 +87,7 @@ private:
 		[Test] void PulseFFT();
 		[Test] void Spectrum();
 		[Test] void Wave();
+		[Test] void WaveAssign();
 		[Test] void Convolution();
 	};
 };
