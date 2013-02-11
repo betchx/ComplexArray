@@ -7,7 +7,7 @@ BEGIN_NAMESPACE;
 generic <typename T> 
 bool ViewEnumerator<T>::MoveNext()
 {
-	return (++(++ptr)) != last;
+	return (++(++ptr)) < last;
 }
 
 generic <typename T> 
