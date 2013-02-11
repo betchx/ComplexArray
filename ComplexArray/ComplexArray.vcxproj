@@ -86,9 +86,11 @@
     <ClInclude Include="ComplexEnumerator.h" />
     <ClInclude Include="ComplexView.h" />
     <ClInclude Include="FFTWComplexArray.h" />
+    <ClInclude Include="FFTWVector.h" />
     <ClInclude Include="ops.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="WaveData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -103,6 +105,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="WaveData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
