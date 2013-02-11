@@ -61,8 +61,8 @@ public:
 
 	property IEnumerable<Complex^>^  Spectrum{ IEnumerable<Complex^>^ get(); void set(IEnumerable<Complex^>^ e); }
 	property IEnumerable<double>^ Wave{ IEnumerable<double>^ get(); void set(IEnumerable<double>^ e);}
-	property IEnumerable<double>^ Real{ IEnumerable<double>^ get();}
-	property IEnumerable<double>^ Imag{ IEnumerable<double>^ get();}
+	property IEnumerable<double>^ Reals{ IEnumerable<double>^ get(); void set(IEnumerable<double>^ e);}
+	property IEnumerable<double>^ Imags{ IEnumerable<double>^ get(); void set(IEnumerable<double>^ e);}
 	property IEnumerable<double>^ Abs{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Ang{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Power{ IEnumerable<double>^ get();}

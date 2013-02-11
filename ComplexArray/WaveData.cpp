@@ -212,12 +212,34 @@ void WaveData::Wave::set(IEnumerable<double>^ arr)
 // property Real
 double WaveData::Real::get(int idx){update_sp(); return sp_->at(idx).real();}
 void WaveData::Real::set(int idx, double value){ sp_->at(idx).real(value); sp_updated();}
-IEnumerable<double>^ WaveData::Real::get(){return gcnew ComplexElementEnum(sp_->dbl_begin(), sp_->size());}
+IEnumerable<double>^ WaveData::Reals::get(){return gcnew ComplexElementEnum(sp_->dbl_begin(), sp_->size());}
+void WaveData::Reals::set(IEnumerable<double>^ arr)
+{
+	auto e = arr->GetEnumerator();
+	auto ptr = sp_->begin();
+	auto end_ = sp_->end();
+	while( e->MoveNext() && ptr < end_)
+	{
+		(ptr++)->real(e->Current);
+	}
+	sp_updated();
+}
 
 // property Imag
 double WaveData::Imag::get(int idx){update_sp(); return sp_->at(idx).imag();}
 void WaveData::Imag::set(int idx, double value){ sp_->at(idx).imag(value); sp_updated();}
-IEnumerable<double>^ WaveData::Imag::get(){return gcnew ComplexElementEnum(sp_->dbl_begin()+1, sp_->size());}
+IEnumerable<double>^ WaveData::Imags::get(){return gcnew ComplexElementEnum(sp_->dbl_begin()+1, sp_->size());}
+void WaveData::Imags::set(IEnumerable<double>^ arr)
+{
+	auto e = arr->GetEnumerator();
+	auto ptr = sp_->begin();
+	auto end_ = sp_->end();
+	while( e->MoveNext() && ptr < end_)
+	{
+		(ptr++)->imag(e->Current);
+	}
+	sp_updated();
+}
 
 
 IEnumerable<double>^ WaveData::Abs::get(){return gcnew ConvEnum<AbsConv>(sp_->dbl_begin(), sp_->size());}
