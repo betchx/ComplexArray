@@ -74,7 +74,7 @@ public:
 	// Convolution
 	static WaveData^ operator * (WaveData^ lhs, WaveData^ rhs);
 
-protected private:
+private:
 	[TestFixture] // ref class can contain test
 	ref class Test{
 	public:
