@@ -6,17 +6,17 @@ using namespace System::Runtime::InteropServices;
 BEGIN_NAMESPACE;
 
 WaveData::WaveData()
-	:wave_(nullptr),sp_(nullptr),dirty_wave_(true),dirty_sp_(true),length_(0),wave_size_(0),sp_size_(0),w2s_(nullptr),s2w_(nullptr)
+	:wave_(nullptr),sp_(nullptr),dirty_wave_(true),dirty_sp_(true),length_(0),wave_size_(0),sp_size_(0),w2s_(nullptr),s2w_(nullptr), wave_id_(0u), sp_id_(0u)
 {}
 
 WaveData::WaveData(int size)
-	:wave_(nullptr), sp_(nullptr)
+	:wave_(nullptr), sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
 	allocate(size);
 }
 
 WaveData::WaveData(array<double>^ arr)
-	:wave_(nullptr), sp_(nullptr)
+	:wave_(nullptr), sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
 	allocate(arr->Length);
 	Marshal::Copy(arr, 0, (System::IntPtr)wave_, this->Length);
@@ -24,7 +24,7 @@ WaveData::WaveData(array<double>^ arr)
 }
 
 WaveData::WaveData(WaveData^ other)
-	:wave_(nullptr),sp_(nullptr)
+	:wave_(nullptr),sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
 	allocate(other->Length);
 	if( ! other->dirty_wave_ )
@@ -40,7 +40,7 @@ WaveData::WaveData(WaveData^ other)
 }
 
 WaveData::WaveData(ComplexArray^ carr)
-	:wave_(nullptr),sp_(nullptr)
+	:wave_(nullptr),sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
 	int len;
 	if( carr->Length % 2 == 1){
@@ -61,7 +61,7 @@ WaveData::WaveData(ComplexArray^ carr)
 }
 
 WaveData::WaveData(FFTWComplexArray* arr)
-	:wave_(nullptr), sp_(nullptr)
+	:wave_(nullptr), sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
 	allocate(arr->size());
 	memcpy(sp_->dbl_begin(), arr->dbl_begin(), length_*sizeof(fftw_complex));
@@ -69,7 +69,7 @@ WaveData::WaveData(FFTWComplexArray* arr)
 }
 
 WaveData::WaveData(std::complex<double>* begin, std::complex<double>* end)
-	:wave_(nullptr), sp_(nullptr)
+	:wave_(nullptr), sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
 	allocate((int)(end  - begin));
 	std::copy(begin, end, sp_->begin());
@@ -77,7 +77,7 @@ WaveData::WaveData(std::complex<double>* begin, std::complex<double>* end)
 }
 
 WaveData::WaveData(double* begin, double* end)
-	:wave_(nullptr), sp_(nullptr)
+	:wave_(nullptr), sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
 	allocate((int)(end - begin));
 	std::copy(begin, end, wave_);
@@ -127,11 +127,13 @@ void WaveData::allocate(int length)
 	if(! wave_){
 		wave_ = (double*)fftw_malloc(sizeof(double) * length);
 		dirty_wave_ = true;
+		wave_id_update();
 	}
     int sp_length = length / 2 + 1;
 	if(! sp_){
 		sp_ = new FFTWComplexArray(sp_length);
 		dirty_sp_ = true;
+		sp_id_update();
 	}
 	if(wave_ && sp_){
 		length_ = length;
@@ -151,6 +153,7 @@ void WaveData::update_wave()
 	if(dirty_wave_ && ! dirty_sp_ && s2w_){
 		fftw_execute(s2w_);
 		std::transform(begin(), end(), begin(), std::bind2nd(std::divides<double>(), (double)length_));
+		wave_id_update();
 		dirty_wave_ = false;
 	}
 }
@@ -160,6 +163,7 @@ void WaveData::update_sp()
 	if(dirty_sp_ && ! dirty_wave_ && w2s_)
 	{
 		fftw_execute(w2s_);
+		sp_id_update();
 		dirty_sp_ = false;
 	}
 }
@@ -187,6 +191,7 @@ void WaveData::Spectrum::set(int idx, Complex^ value)
 	std::complex<double>& c = sp_->at(idx);
 	c.real(value->Real);
 	c.imag(value->Imag);
+	sp_updated();
 }
 IEnumerable<Complex^>^ WaveData::Spectrum::get(){return gcnew ComplexEnum(sp_->dbl_begin(), sp_->size() * 2); }
 void WaveData::Spectrum::set(IEnumerable<Complex^>^ arr)

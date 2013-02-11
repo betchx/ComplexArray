@@ -9,6 +9,10 @@ BEGIN_NAMESPACE;
 
 public ref class WaveData
 {
+	static unsigned last_id_ = 0u;
+	static unsigned next_id(){return ++last_id_;}
+
+
 	double*  wave_;
 	FFTWComplexArray* sp_;
 
@@ -22,11 +26,16 @@ public ref class WaveData
 	size_t wave_size_;
 	size_t   sp_size_;
 
+	unsigned wave_id_;
+	unsigned sp_id_;
+	void wave_id_update(){ wave_id_ = next_id(); }
+	void   sp_id_update(){   sp_id_ = next_id(); }
+
 	void allocate(int size);
 	void update_wave();
 	void update_sp();
-	void wave_updated(){dirty_wave_ = false; dirty_sp_ = true;}
-	void   sp_updated(){dirty_wave_ = true;  dirty_sp_ = false;}
+	void wave_updated(){dirty_wave_ = false; dirty_sp_ =  true;  wave_id_update();}
+	void   sp_updated(){dirty_wave_ = true;  dirty_sp_ = false;    sp_id_update();}
 
 	property std::complex<double>& sp[int]{
 		std::complex<double>& get(int idx);
@@ -69,6 +78,8 @@ public:
 	property IEnumerable<double>^ Power{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ dB{ IEnumerable<double>^ get();}
 
+	property unsigned wave_id{ unsigned get(){return wave_id_;}}
+	property unsigned   sp_id{ unsigned get(){return   sp_id_;}}
 
 	void clear_wave();
 	void clear_sp();
