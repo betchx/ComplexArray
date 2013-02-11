@@ -110,6 +110,17 @@ void WaveData::clear_sp()
 std::complex<double>& WaveData::sp::get(int idx){return sp_->at(idx);}
 void WaveData::sp::set(int idx, std::complex<double>& value){sp_->set(idx, value);}
 
+bool WaveData::update()
+{
+	if(is_dirty()){
+		update_wave();
+		update_sp();
+		return ! is_dirty();
+	}else
+		return false;
+}
+
+
 
 void WaveData::allocate(int length)
 {
