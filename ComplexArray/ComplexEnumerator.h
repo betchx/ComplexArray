@@ -36,15 +36,25 @@ public:
 	{
 		ComplexView^ get()override;
 	}
-
 	ComplexEnumerator(double* base, int size);
-
 	virtual ~ComplexEnumerator();
+};
+
+ref class ComplexEnum : ComplexEnumerator, IEnumerable<ComplexView^>
+{
+public:
+	ComplexEnum(double* base, int size);
+	virtual ~ComplexEnum();
+	virtual IEnumerator<ComplexView^>^ GetEnumerator(){return this;}
+
+	virtual System::Collections::IEnumerator^ GetObjEnumerator()
+		= System::Collections::IEnumerable::GetEnumerator
+	{return this;}
 };
 
 //------------------------------------------------//
 
-ref class ComplexElementEnumerator : ViewEnumerator<double>
+ref class ComplexElementEnum : ViewEnumerator<double>, IEnumerable<double>
 {
 public:
 	virtual property double Current
@@ -52,26 +62,19 @@ public:
 		double get() override;
 	}
 
-	ComplexElementEnumerator(double* base, int size);
+	ComplexElementEnum(double* base, int size);
 
-	virtual ~ComplexElementEnumerator();
+	virtual ~ComplexElementEnum();
+
+	virtual IEnumerator<double>^ GetEnumerator()
+	  {return this;}
+
+	virtual System::Collections::IEnumerator^ GetObjEnumerator()
+		= System::Collections::IEnumerable::GetEnumerator
+	{return this;}
 };
 
 
-ref class ComplexElementEnumeratorWrapper : IEnumerable<double>
-{
-  double* ptr_;
-  int size_;
-public:
-  ComplexElementEnumeratorWrapper(double* ptr, int size):ptr_(ptr),size_(size){}
-
-  virtual IEnumerator<double>^ GetEnumerator()
-  {return gcnew ComplexElementEnumerator(ptr_, size_);}
-
-  virtual System::Collections::IEnumerator^ GetObjEnumerator()
-    = System::Collections::IEnumerable::GetEnumerator
-  {return GetEnumerator();}
-};
 
 
 END_NAMESPACE;

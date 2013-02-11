@@ -25,6 +25,12 @@ generic <typename T>
 ViewEnumerator<T>::~ViewEnumerator()
 {}
 
+ComplexEnum::ComplexEnum(double* base, int size)
+	:ComplexEnumerator(base, size)
+{}
+
+ComplexEnum::~ComplexEnum()
+{}
 
 // 
 
@@ -43,20 +49,19 @@ ComplexEnumerator::~ComplexEnumerator()
 {}
 
 
-double  ComplexElementEnumerator::Current::get()
+double  ComplexElementEnum::Current::get()
 {
 	if(ptr == first || ptr >= last)
 		throw gcnew InvalidOperationException();
 	return *ptr;
 }
 
-ComplexElementEnumerator::ComplexElementEnumerator(double* base, int size)
+ComplexElementEnum::ComplexElementEnum(double* base, int size)
 	:ViewEnumerator(base, size)
 {}
 
-ComplexElementEnumerator::~ComplexElementEnumerator()
-{
-}
+ComplexElementEnum::~ComplexElementEnum()
+{}
 
 
 END_NAMESPACE;

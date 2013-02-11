@@ -78,12 +78,12 @@ void ComplexArray::allocate()
 
 IEnumerable<double>^ ComplexArray::Real::get()
 {
-	return gcnew ComplexElementEnumeratorWrapper(data_, size_);
+	return gcnew ComplexElementEnum(data_, size_);
 }
 
 IEnumerable<double>^ ComplexArray::Imag::get()
 {
-	return gcnew ComplexElementEnumeratorWrapper(data_+1, size_);
+	return gcnew ComplexElementEnum(data_+1, size_);
 }
 
 array<double>^ ComplexArray::real()
