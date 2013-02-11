@@ -62,6 +62,9 @@ public:
 	property IEnumerable<double>^ Wave{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Real{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Imag{ IEnumerable<double>^ get();}
+	property IEnumerable<double>^ Abs{ IEnumerable<double>^ get();}
+	property IEnumerable<double>^ Ang{ IEnumerable<double>^ get();}
+	property IEnumerable<double>^ Power{ IEnumerable<double>^ get();}
 
 
 	void clear_wave();

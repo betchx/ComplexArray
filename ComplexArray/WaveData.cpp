@@ -188,6 +188,10 @@ void WaveData::Imag::set(int idx, double value){ sp_->at(idx).imag(value); sp_up
 IEnumerable<double>^ WaveData::Imag::get(){return gcnew ComplexElementEnum(sp_->dbl_begin()+1, sp_->size());}
 
 
+IEnumerable<double>^ WaveData::Abs::get(){return gcnew ConvEnum<AbsConv>(sp_->dbl_begin(), sp_->size());}
+IEnumerable<double>^ WaveData::Ang::get(){return gcnew ConvEnum<AngConv>(sp_->dbl_begin(), sp_->size());}
+IEnumerable<double>^ WaveData::Power::get(){return gcnew ConvEnum<PowerConv>(sp_->dbl_begin(), sp_->size());}
+
 
 //Test
 void WaveData::Test::Allocation()
