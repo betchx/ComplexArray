@@ -49,12 +49,15 @@ public:
 	property IEnumerable<double>^ Real
 	{
 		IEnumerable<double>^ get();
+		void set(IEnumerable<double>^ );
 	}
 	property IEnumerable<double>^ Imag
 	{
 		IEnumerable<double>^ get();
+		void set(IEnumerable<double>^ );
 	}
-    array<double>^ real();
+
+	array<double>^ real();
     array<double>^ imag();
 	property Complex^ default [int]
 	{
@@ -62,17 +65,9 @@ public:
 		void set(int idx, Complex^ value);
 	}
 
-	property int Length
-	{
-		int get();
-	}
-	property int size
-	{
-		int get();
-	}
+	property int Length { int get(); }
+	property int size { int get(); }
 
-	ComplexArray^ real_assign(IEnumerable<double>^ c);
-	ComplexArray^ imag_assign(IEnumerable<double>^ c);
 
 	static operator ComplexArray^ (ComplexArray %ca){return %ca;}
 

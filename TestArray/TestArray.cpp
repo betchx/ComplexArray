@@ -796,14 +796,14 @@ void test_assign()
 		IN_DELTA(ca[i]->Real, 0.0, 0.0001, "Init Real");
 		IN_DELTA(ca[i]->Imag, 0.0, 0.0001, "Init Imag");
 	}
-	ca.real_assign(arr);
+	ca.Real = arr;
 	for(int i = 0; i < 3; ++i)
 	{
 		IN_DELTA(ca[i]->Real, arr[i], 0.0001, "Assigned Real");
 		IN_DELTA(ca[i]->Imag, 0.0, 0.0001, "original Imag");
 	}
 	array<double>^ rev =  {4.0, 3.0};
-	ca.imag_assign(rev);
+	ca.Imag = rev;
 	//  ca->imag_assign(Enumerable::Take(Enumerable::Reverse(arr),2));
 	IN_DELTA(ca[0]->Real, 1.0, 0.0001, "Assigned Real0");
 	IN_DELTA(ca[0]->Imag, 4.0, 0.0001, "Assigned Imag0");

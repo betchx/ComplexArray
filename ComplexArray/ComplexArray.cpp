@@ -215,7 +215,7 @@ IEnumerator<Complex^>^ ComplexArray::GetEnumerator()
 }
 
 
-ComplexArray^ ComplexArray::real_assign(IEnumerable<double>^ c)
+void ComplexArray::Real::set(IEnumerable<double>^ c)
 {
 	IEnumerator<double>^ e = c->GetEnumerator();
 	double * ptr = begin();
@@ -224,10 +224,9 @@ ComplexArray^ ComplexArray::real_assign(IEnumerable<double>^ c)
 		*(ptr++) = e->Current;
 		++ptr;
 	}
-	return this;
 }
 
-ComplexArray^ ComplexArray::imag_assign(IEnumerable<double>^ c)
+void ComplexArray::Imag::set(IEnumerable<double>^ c)
 {
 	IEnumerator<double>^ e = c->GetEnumerator();
 	double * ptr = begin();
@@ -236,7 +235,6 @@ ComplexArray^ ComplexArray::imag_assign(IEnumerable<double>^ c)
 		*(++ptr) = e->Current;
 		++ptr;
 	}
-	return this;
 }
 
 // Operations
