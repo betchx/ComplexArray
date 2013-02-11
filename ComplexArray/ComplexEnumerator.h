@@ -152,6 +152,14 @@ private struct AngConv
 	}
 };
 
+private struct dBConv
+{
+	static double convert(const double& re, const double& im)
+	{
+		return 20.0 * log10(re*re+im*im);
+	}
+};
+
 
 private ref class ArrayEnum : IEnumerator<double>, IEnumerable<double>
 {

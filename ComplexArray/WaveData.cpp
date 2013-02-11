@@ -223,6 +223,7 @@ IEnumerable<double>^ WaveData::Imag::get(){return gcnew ComplexElementEnum(sp_->
 IEnumerable<double>^ WaveData::Abs::get(){return gcnew ConvEnum<AbsConv>(sp_->dbl_begin(), sp_->size());}
 IEnumerable<double>^ WaveData::Ang::get(){return gcnew ConvEnum<AngConv>(sp_->dbl_begin(), sp_->size());}
 IEnumerable<double>^ WaveData::Power::get(){return gcnew ConvEnum<PowerConv>(sp_->dbl_begin(), sp_->size());}
+IEnumerable<double>^ WaveData::dB::get(){return gcnew ConvEnum<dBConv>(sp_->dbl_begin(), sp_->size());}
 
 
 

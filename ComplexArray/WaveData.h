@@ -66,6 +66,7 @@ public:
 	property IEnumerable<double>^ Abs{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Ang{ IEnumerable<double>^ get();}
 	property IEnumerable<double>^ Power{ IEnumerable<double>^ get();}
+	property IEnumerable<double>^ dB{ IEnumerable<double>^ get();}
 
 
 	void clear_wave();
