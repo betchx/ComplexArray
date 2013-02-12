@@ -523,4 +523,110 @@ void WaveData::Test::Convolution()
 }
 
 
+void WaveData::Test::Abs()
+{
+    using namespace System::Linq;
+    array<double>^ real = { -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0};
+    int n = real->Length;
+    array<double>^ ans = gcnew array<double>(n);
+    double rt2 = sqrt(2.0);
+    for(int i = 0; i < n; ++i){
+        ans[i] = rt2 * abs(real[i]);
+    }
+
+    WaveData^ wd = gcnew WaveData((n-(n%2))*2);
+    wd->clear_sp();
+    wd->Reals = real;
+
+    array<double>^ res = Enumerable::ToArray(wd->Abs);
+
+    Assert::AreEqual(n, res->Length);
+
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(fabs(real[i]), res[i], 0.00001, i.ToString());
+    }
+
+    wd->Imags = real;
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(real[i], wd->Real[i], 0.0001);
+        Assert::AreEqual(real[i], wd->Imag[i], 0.0001);
+    }
+    res = Enumerable::ToArray(wd->Abs);
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(ans[i], res[i], 0.00001, i.ToString());
+    }
+
+}
+
+
+void WaveData::Test::Power()
+{
+    using namespace System::Linq;
+    array<double>^ real = { -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0};
+    int n = real->Length;
+    array<double>^ ans = gcnew array<double>(n);
+    for(int i = 0; i < n; ++i){
+        ans[i] = 2 * real[i] * real[i];
+    }
+
+    WaveData^ wd = gcnew WaveData((n-(n%2))*2);
+    wd->clear_sp();
+    wd->Reals = real;
+
+    array<double>^ res = Enumerable::ToArray(wd->Power);
+
+    Assert::AreEqual(n, res->Length);
+
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(real[i]*real[i], res[i], 0.00001, i.ToString());
+    }
+
+    wd->Imags = real;
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(real[i], wd->Real[i], 0.0001);
+        Assert::AreEqual(real[i], wd->Imag[i], 0.0001);
+    }
+    res = Enumerable::ToArray(wd->Power);
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(ans[i], res[i], 0.00001, i.ToString());
+    }
+
+}
+
+void WaveData::Test::dB()
+{
+    using namespace System::Linq;
+    array<double>^ real = { 0.001,  0.01,   0.1, 1.0, 10.0, 100.0, 1000.0};
+    array<double>^  ans = {-120.0, -80.0, -40.0, 0.0, 40.0,  80.0,  120.0};
+
+    int n = 7;
+    int sz = 12;
+
+
+    WaveData^ wd = gcnew WaveData(12);
+    wd->clear_sp();
+    wd->Reals = real;
+
+    array<double>^ res = Enumerable::ToArray(wd->dB);
+
+    Assert::AreEqual(n, res->Length);
+
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(real[i], wd->Real[i], 0.0001);
+        Assert::AreEqual(    0.0, wd->Imag[i], 0.0001);
+    }
+    for(int i = 0; i < n; ++i)
+    {
+        Assert::AreEqual(ans[i], res[i], 0.00001, i.ToString());
+    }
+
+}
+
 END_NAMESPACE;

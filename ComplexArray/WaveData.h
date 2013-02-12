@@ -104,6 +104,9 @@ private:
 		[Test] void Wave();
 		[Test] void WaveAssign();
 		[Test] void Convolution();
+        [Test] void Abs();
+        [Test] void Power();
+        [Test] void dB();
 	};
 };
 
