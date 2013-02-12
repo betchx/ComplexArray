@@ -385,7 +385,7 @@ void WaveData::Test::PulseFFT()
 	int n = 8;
 	WaveData wd(n);
 	wd.clear_wave();
-	Assert::True(wd.dirty_wave_);
+	Assert::False(wd.dirty_wave_);
 	Assert::True(wd.dirty_sp_);
 
 	for(int i = 0; i < n; ++i)
