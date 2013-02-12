@@ -89,7 +89,7 @@ private ref class ConvEnum : IEnumerator<double>, IEnumerable<double>
 	int size_;
 public:
 	ConvEnum(double* ptr, int size)
-		:r_(ptr-2), i_(ptr-1), begin_(ptr-2), end_(ptr+size),size_(size)
+		:r_(ptr-2), i_(ptr-1), begin_(ptr-2), end_(ptr+size*2),size_(size*2)
 	{}
 
 	virtual ~ConvEnum(){}
