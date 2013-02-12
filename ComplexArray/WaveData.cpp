@@ -100,15 +100,23 @@ int WaveData::SpLength::get(){return sp_->size();}
 void WaveData::clear_wave()
 {
 	memset(wave_, 0, wave_size_);
+    wave_updated();
 }
 
 void WaveData::clear_sp()
 {
 	sp_->clear();
+    sp_updated();
 }
 
-std::complex<double>& WaveData::sp::get(int idx){return sp_->at(idx);}
-void WaveData::sp::set(int idx, std::complex<double>& value){sp_->set(idx, value);}
+std::complex<double>& WaveData::sp::get(int idx){
+  update_sp();
+  return sp_->at(idx);
+}
+void WaveData::sp::set(int idx, std::complex<double>& value){
+  sp_->set(idx, value);
+  up_updated();
+}
 
 bool WaveData::update()
 {
@@ -185,7 +193,10 @@ WaveData^ WaveData::operator * (WaveData^ lhs, WaveData^ rhs)
 
 
 // property Spectrum
-Complex^ WaveData::Spectrum::get(int idx){ return gcnew ComplexView(sp_->dbl_begin() + idx * 2);}
+Complex^ WaveData::Spectrum::get(int idx){
+  update_sp();
+  return gcnew ComplexView(sp_->dbl_begin() + idx * 2);
+}
 void WaveData::Spectrum::set(int idx, Complex^ value)
 {
 	std::complex<double>& c = sp_->at(idx);
@@ -193,7 +204,10 @@ void WaveData::Spectrum::set(int idx, Complex^ value)
 	c.imag(value->Imag);
 	sp_updated();
 }
-IEnumerable<Complex^>^ WaveData::Spectrum::get(){return gcnew ComplexEnum(sp_->dbl_begin(), sp_->size() * 2); }
+IEnumerable<Complex^>^ WaveData::Spectrum::get(){
+  update_sp();
+  return gcnew ComplexEnum(sp_->dbl_begin(), sp_->size() * 2);
+}
 void WaveData::Spectrum::set(IEnumerable<Complex^>^ arr)
 {
 	auto e = arr->GetEnumerator();
@@ -210,9 +224,18 @@ void WaveData::Spectrum::set(IEnumerable<Complex^>^ arr)
 
 
 // property Wave
-double WaveData::default::get(int idx){update_wave();return wave_[idx];}
-void WaveData::default::set(int idx, double value){ wave_[idx] = value; wave_updated();}
-IEnumerable<double>^ WaveData::Wave::get(){return gcnew ArrayEnum(wave_, length_);}
+double WaveData::default::get(int idx){
+  update_wave();
+  return wave_[idx];
+}
+void WaveData::default::set(int idx, double value){
+  wave_[idx] = value;
+  wave_updated();
+}
+IEnumerable<double>^ WaveData::Wave::get(){
+  update_wave();
+  return gcnew ArrayEnum(wave_, length_);
+}
 void WaveData::Wave::set(IEnumerable<double>^ arr)
 {
 	auto e = arr->GetEnumerator();
@@ -226,9 +249,18 @@ void WaveData::Wave::set(IEnumerable<double>^ arr)
 }
 
 // property Real
-double WaveData::Real::get(int idx){update_sp(); return sp_->at(idx).real();}
-void WaveData::Real::set(int idx, double value){ sp_->at(idx).real(value); sp_updated();}
-IEnumerable<double>^ WaveData::Reals::get(){return gcnew ComplexElementEnum(sp_->dbl_begin(), sp_->size());}
+double WaveData::Real::get(int idx){
+  update_sp();
+  return sp_->at(idx).real();
+}
+void WaveData::Real::set(int idx, double value){
+  sp_->at(idx).real(value);
+  sp_updated();
+}
+IEnumerable<double>^ WaveData::Reals::get(){
+  update_sp();
+  return gcnew ComplexElementEnum(sp_->dbl_begin(), sp_->size());
+}
 void WaveData::Reals::set(IEnumerable<double>^ arr)
 {
 	auto e = arr->GetEnumerator();
@@ -242,9 +274,18 @@ void WaveData::Reals::set(IEnumerable<double>^ arr)
 }
 
 // property Imag
-double WaveData::Imag::get(int idx){update_sp(); return sp_->at(idx).imag();}
-void WaveData::Imag::set(int idx, double value){ sp_->at(idx).imag(value); sp_updated();}
-IEnumerable<double>^ WaveData::Imags::get(){return gcnew ComplexElementEnum(sp_->dbl_begin()+1, sp_->size());}
+double WaveData::Imag::get(int idx){
+  update_sp();
+  return sp_->at(idx).imag();
+}
+void WaveData::Imag::set(int idx, double value){
+  sp_->at(idx).imag(value);
+  sp_updated();
+}
+IEnumerable<double>^ WaveData::Imags::get(){
+  update_sp();
+  return gcnew ComplexElementEnum(sp_->dbl_begin()+1, sp_->size());
+}
 void WaveData::Imags::set(IEnumerable<double>^ arr)
 {
 	auto e = arr->GetEnumerator();
@@ -258,10 +299,22 @@ void WaveData::Imags::set(IEnumerable<double>^ arr)
 }
 
 
-IEnumerable<double>^ WaveData::Abs::get(){return gcnew ConvEnum<AbsConv>(sp_->dbl_begin(), sp_->size());}
-IEnumerable<double>^ WaveData::Ang::get(){return gcnew ConvEnum<AngConv>(sp_->dbl_begin(), sp_->size());}
-IEnumerable<double>^ WaveData::Power::get(){return gcnew ConvEnum<PowerConv>(sp_->dbl_begin(), sp_->size());}
-IEnumerable<double>^ WaveData::dB::get(){return gcnew ConvEnum<dBConv>(sp_->dbl_begin(), sp_->size());}
+IEnumerable<double>^ WaveData::Abs::get(){
+  update_sp();
+  return gcnew ConvEnum<AbsConv>(sp_->dbl_begin(), sp_->size());
+}
+IEnumerable<double>^ WaveData::Ang::get(){
+  update_sp();
+  return gcnew ConvEnum<AngConv>(sp_->dbl_begin(), sp_->size());
+}
+IEnumerable<double>^ WaveData::Power::get(){
+  update_sp();
+  return gcnew ConvEnum<PowerConv>(sp_->dbl_begin(), sp_->size());
+}
+IEnumerable<double>^ WaveData::dB::get(){
+  update_sp();
+  return gcnew ConvEnum<dBConv>(sp_->dbl_begin(), sp_->size());
+}
 
 
 
