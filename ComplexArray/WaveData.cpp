@@ -115,7 +115,7 @@ std::complex<double>& WaveData::sp::get(int idx){
 }
 void WaveData::sp::set(int idx, std::complex<double>& value){
   sp_->set(idx, value);
-  up_updated();
+  sp_updated();
 }
 
 bool WaveData::update()
