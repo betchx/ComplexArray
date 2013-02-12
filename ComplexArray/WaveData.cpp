@@ -135,13 +135,11 @@ void WaveData::allocate(int length)
 	if(! wave_){
 		wave_ = (double*)fftw_malloc(sizeof(double) * length);
 		dirty_wave_ = true;
-		wave_id_update();
 	}
     int sp_length = length / 2 + 1;
 	if(! sp_){
 		sp_ = new FFTWComplexArray(sp_length);
 		dirty_sp_ = true;
-		sp_id_update();
 	}
 	if(wave_ && sp_){
 		length_ = length;
