@@ -514,7 +514,7 @@ void WaveData::Test::WaveAssign()
 void WaveData::Test::Convolution()
 {
 	array<double>^ wave =   { 1.0,  0.7,  0.0, -0.7, -1.0, -0.7,  0.0,  0.7};
-	array<double>^ tgt  =   { 0.0,  1.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0}; 
+	array<double>^ tgt  =   { 0.0,  1.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0};
 	array<double>^ answer = { 0.7,  1.0,  0.7,  0.0, -0.7, -1.0, -0.7,  0.0};
     WaveData^ f = gcnew WaveData(wave);
 	WaveData^ g = gcnew WaveData(tgt);
