@@ -114,14 +114,16 @@ public:
 
 	[Test] void At()
 	{
-		int n = 10;
-		FFTWComplexArray ca(n);
+		int n = 2;
 		double a = 10.0, b=11.0, c=12.0, d=13.0;
+		array<double>^ src = { a, b, c, d};
+		FFTWComplexArray ca(src);
 		double D = 0.000001;
-		Assert::AreEqual(a, ca.at(0).real(a), D);
-		Assert::AreEqual(b, ca[0].imag(b), D);
-		Assert::AreEqual(c, ca.at(n-1).real(c), D);
-		Assert::AreEqual(d, ca[n-1].imag(d), D);
+
+		Assert::AreEqual(a, ca.at(0).real(), D);
+		Assert::AreEqual(b, ca[0].imag(), D);
+		Assert::AreEqual(c, ca.at(n-1).real(), D);
+		Assert::AreEqual(d, ca[n-1].imag(), D);
 
 		// negative index
 		Assert::AreEqual(a, ca.at(-n).real(), D);
@@ -166,8 +168,9 @@ public:
 	{
 		int n = 10;
 		FFTWComplexArray ca(n);
-
+#pragma warning(suppress: 4965) 
 		Assert::AreEqual(0, ca.normalize(0));
+#pragma warning(suppress: 4965) 
 		Assert::AreEqual(0, ca.normalize(n));
 		Assert::AreEqual(1, ca.normalize(1));
 		Assert::AreEqual(n-1, ca.normalize(n-1));
