@@ -836,7 +836,7 @@ void test_operator_plus_equal_complex_array()
 		ca += d;
 		Console::WriteLine("Error: No Exception Thrown");
 	}
-	catch(Exception^ e)
+	catch(Exception^)
 	{
 		Console::Write(".");
 	}
@@ -877,7 +877,7 @@ void test_operator_plus_complex_array()
 		ca = x + d;
 		Console::WriteLine("Error: No Exception Thrown");
 	}
-	catch(Exception^ e)
+	catch(Exception^)
 	{
 		Console::Write(".");
 	}

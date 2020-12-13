@@ -4,10 +4,10 @@
 
 BEGIN_NAMESPACE;
 
-generic <typename T> 
+generic <typename T>
 bool ViewEnumerator<T>::MoveNext()
 {
-	return (++(++ptr)) < last;
+  return (++(++ptr)) < last;
 }
 
 generic <typename T> 
@@ -34,33 +34,32 @@ ComplexEnum::~ComplexEnum()
 
 Complex^ ComplexEnum::Current::get()
 {
-	if(ptr == first || ptr >= last)
-		throw gcnew InvalidOperationException();
-	return gcnew ComplexView(ptr);
+  if (ptr == first || ptr >= last)
+    throw gcnew InvalidOperationException();
+  return gcnew ComplexView(ptr);
 }
 
 // 
 
 Complex^ ComplexEnumerator::Current::get()
 {
-	if(ptr == first || ptr >= last)
-		throw gcnew InvalidOperationException();
-	return gcnew ComplexView(ptr);
+  if (ptr == first || ptr >= last)
+    throw gcnew InvalidOperationException();
+  return gcnew ComplexView(ptr);
 }
 
 ComplexEnumerator::ComplexEnumerator(double* base, int size)
-	:ViewEnumerator(base, size)
+  :ViewEnumerator(base, size)
 {}
 
 ComplexEnumerator::~ComplexEnumerator()
 {}
 
-
 double  ComplexElementEnum::Current::get()
 {
-	if(ptr == first || ptr >= last)
-		throw gcnew InvalidOperationException();
-	return *ptr;
+  if (ptr == first || ptr >= last)
+    throw gcnew InvalidOperationException();
+  return *ptr;
 }
 
 ComplexElementEnum::ComplexElementEnum(double* base, int size)
@@ -69,6 +68,5 @@ ComplexElementEnum::ComplexElementEnum(double* base, int size)
 
 ComplexElementEnum::~ComplexElementEnum()
 {}
-
 
 END_NAMESPACE;
