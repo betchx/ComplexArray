@@ -84,6 +84,7 @@
       <Filter>リソース ファイル</Filter>
     </None>
     <None Include="make_ops_h.rb" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

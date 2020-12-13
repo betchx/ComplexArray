@@ -6,5 +6,5 @@
 
 namespace std{
 	// VC hasn't int version of to_string
-	string to_string(int val){return to_string((long long)val);}
+	// string to_string(int val){return to_string((long long)val);}
 }

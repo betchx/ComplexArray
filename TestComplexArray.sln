@@ -1,20 +1,42 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestComplexArray", "TestComplexArray\TestComplexArray.csproj", "{422410EB-BC55-4EAF-A5D3-94A0C9E52590}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9} = {B0F32A58-1907-48AF-9668-C6E73AA00FE9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComplexArray", "ComplexArray\ComplexArray.vcxproj", "{B0F32A58-1907-48AF-9668-C6E73AA00FE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Debug|x86.Build.0 = Debug|Any CPU
 		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Release|x86.ActiveCfg = Release|Any CPU
+		{422410EB-BC55-4EAF-A5D3-94A0C9E52590}.Release|x86.Build.0 = Release|Any CPU
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|x86.ActiveCfg = Debug|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|x86.Build.0 = Debug|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|Any CPU.ActiveCfg = Release|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|x86.ActiveCfg = Release|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0A6FB8C-14D1-42D6-8FC1-530122851097}
 	EndGlobalSection
 EndGlobal
