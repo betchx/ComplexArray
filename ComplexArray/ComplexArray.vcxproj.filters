@@ -30,9 +30,6 @@
     <ClInclude Include="ComplexEnumerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ops.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ComplexView.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>

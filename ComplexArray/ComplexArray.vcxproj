@@ -95,7 +95,6 @@
     <ClInclude Include="ComplexView.h" />
     <ClInclude Include="FFTWComplexArray.h" />
     <ClInclude Include="FFTWVector.h" />
-    <ClInclude Include="ops.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="WaveData.h" />
