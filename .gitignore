@@ -8,6 +8,9 @@ Release/
 # Temporary files by VC++
 *.opensdf
 
+# Visual Studio Settings
+.vs/
+
 # SQL detabase   <= Too Large
 *.sdf
 
@@ -19,3 +22,9 @@ Release/
 ComplexArray.suo
 .bash_history
 TestComplexArray.suo
+
+# NuGet Packages (ex. NUnit)
+packages/
+
+# fftw-update test
+fftw/new/
