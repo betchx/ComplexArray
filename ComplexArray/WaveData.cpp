@@ -202,12 +202,12 @@ void WaveData::Spectrum::set(int idx, Complex^ value)
   sp_updated();
 }
 
-IEnumerable<Complex^>^ WaveData::Spectrum::get() {
+IEnumerable<Complex^>^ WaveData::Spectrums::get() {
   update_sp();
   return gcnew ComplexEnum(sp_->dbl_begin(), sp_->size() * 2);
 }
 
-void WaveData::Spectrum::set(IEnumerable<Complex^>^ arr)
+void WaveData::Spectrums::set(IEnumerable<Complex^>^ arr)
 {
   auto e = arr->GetEnumerator();
   auto it = sp_->begin();

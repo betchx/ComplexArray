@@ -1,6 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <fftw3.h>
-#include "..\ComplexArray\FFTWComplexArray.h"
+#include "namespace.h"
+#include "FFTWComplexArray.h"
+#using "ComplexArray.dll"
 
 using namespace NUnit::Framework;
 using namespace System::Runtime::InteropServices;
@@ -39,7 +41,7 @@ public:
     for (int i = 0; i < src->Length; ++i)
     {
       double expect = src[i];
-      double actual = *(arr.data_.ptr + i);
+      double actual = (arr.data_.ptr ) ? *(arr.data_.ptr + i): nan("null");
       Assert::AreEqual(expect, actual, 0.00001);
     }
 

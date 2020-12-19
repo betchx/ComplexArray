@@ -1,11 +1,17 @@
 #include <complex>
 #include <fftw3.h>
-#include "..\ComplexArray\WaveData.h"
+#include "namespace.h"
+#using "ComplexArray.dll"
 
-using namespace ComplexArrayLib;
+#ifdef __INTELLISENSE__
+#pragma diag_suppress 2242
+#endif
+
 using namespace NUnit::Framework;
 using namespace System;
 using namespace System::Collections::Generic;
+
+BEGIN_NAMESPACE;
 
 [NUnit::Framework::TestFixture]
 ref class TestWaveData
@@ -16,7 +22,7 @@ public:
   [NUnit::Framework::Test] void CreateByFullComplexArray();
   [NUnit::Framework::Test] void CreateByHalfComplexArray();
   [NUnit::Framework::Test] void PulseFFT();
-  [NUnit::Framework::Test] void Spectrum();
+  [NUnit::Framework::Test] void Spectrums();
   [NUnit::Framework::Test] void Wave();
   [NUnit::Framework::Test] void WaveAssign();
   [NUnit::Framework::Test] void Convolution();
@@ -24,7 +30,6 @@ public:
   [NUnit::Framework::Test] void Power();
   [NUnit::Framework::Test] void Decibel();
 };
-
 
 //Test
 void TestWaveData::Allocation()
@@ -147,15 +152,15 @@ void TestWaveData::Wave()
   Assert::False(e->MoveNext());
 }
 
-void TestWaveData::Spectrum()
+void TestWaveData::Spectrums()
 {
   array<double>^ arr = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 };
   ComplexArray carr(arr);
   WaveData wd(carr);
   Assert::AreEqual(8, wd.Length);
-  Assert::AreEqual(5, System::Linq::Enumerable::Count(wd.Spectrum));
+  Assert::AreEqual(5, wd.SpLength);
   IEnumerator<Complex^>^ ce = carr.GetEnumerator();
-  IEnumerator<Complex^>^ we = wd.Spectrum->GetEnumerator();
+  IEnumerator<Complex^>^ we = wd.Spectrums->GetEnumerator();
   Assert::True(ce->MoveNext());
   Assert::True(we->MoveNext());
   Assert::AreEqual(ce->Current->Real, we->Current->Real, 0.000001);
@@ -329,3 +334,5 @@ void TestWaveData::Decibel()
     Assert::AreEqual(ans[i], res[i], 0.00001, i.ToString());
   }
 }
+
+END_NAMESPACE;

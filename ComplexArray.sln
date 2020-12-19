@@ -16,7 +16,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NUnitTest", "NUnitTest\NUni
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		FFTWComplexArray\FFTWComplexArray.vcxitems*{89eca6f0-5a10-4e46-9dc6-44f9b67e7037}*SharedItemsImports = 4
 		FFTWComplexArray\FFTWComplexArray.vcxitems*{96fd1005-277e-4774-888d-61fbdc82c1e0}*SharedItemsImports = 4
 		FFTWComplexArray\FFTWComplexArray.vcxitems*{b0f32a58-1907-48af-9668-c6e73aa00fe9}*SharedItemsImports = 4
 		FFTWComplexArray\FFTWComplexArray.vcxitems*{f263e621-1901-41ad-8ae6-2e047360ea20}*SharedItemsImports = 9

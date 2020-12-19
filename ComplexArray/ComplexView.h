@@ -4,9 +4,6 @@
 
 BEGIN_NAMESPACE;
 
-#ifndef IN_LIB
-class ComplexView;
-#else
 public ref class ComplexView : Complex
 {
 	double* ptr_;
@@ -28,6 +25,5 @@ public:
 
 //	static operator Complex^(ComplexView^ v);
 };
-#endif
 
 END_NAMESPACE;

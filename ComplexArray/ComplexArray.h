@@ -7,9 +7,7 @@
 
 BEGIN_NAMESPACE;
 
-#ifndef IN_LIB
- ref class ComplexArray;
-#else
+
 public ref class ComplexArray : IEnumerable<Complex^>
 {
   double* data_;  // begin();
@@ -111,6 +109,5 @@ public:
   array<double>^ ang();
   array<double>^ power();
 };
-#endif
 
 END_NAMESPACE

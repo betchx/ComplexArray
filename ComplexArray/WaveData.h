@@ -6,7 +6,7 @@
 BEGIN_NAMESPACE;
 
 #ifndef IN_LIB
-ref class WaveData;
+//ref class WaveData;
 #else
 public ref class WaveData
 {
@@ -60,15 +60,16 @@ public protected: // only in c++/cli
 public:
   virtual ~WaveData(void);
 
-  property int Length { int get(); }
-  property int WaveLength { int get(); }
-  property int SpLength { int get(); }
+public:
   property Complex^ Spectrum[int]{ Complex ^ get(int idx); void set(int idx, Complex^ value); }
   property double default[int]{ double get(int idx); void set(int idx, double value); }
   property double Real[int]{ double get(int idx); void set(int idx, double value); }
   property double Imag[int]{ double get(int idx); void set(int idx, double value); }
+  property int Length { int get(); }
+  property int WaveLength { int get(); }
+  property int SpLength { int get(); }
 
-  property IEnumerable<Complex^>^ Spectrum { IEnumerable<Complex^>^ get(); void set(IEnumerable<Complex^>^ e); }
+  property IEnumerable<Complex^>^ Spectrums { IEnumerable<Complex^>^ get(); void set(IEnumerable<Complex^>^ e); }
   property IEnumerable<double>^ Wave { IEnumerable<double>^ get(); void set(IEnumerable<double>^ e); }
   property IEnumerable<double>^ Reals { IEnumerable<double>^ get(); void set(IEnumerable<double>^ e); }
   property IEnumerable<double>^ Imags { IEnumerable<double>^ get(); void set(IEnumerable<double>^ e); }

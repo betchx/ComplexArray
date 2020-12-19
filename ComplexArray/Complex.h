@@ -3,14 +3,10 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-#define BEGIN_NAMESPACE namespace ComplexArrayLib{
-#define END_NAMESPACE }
+#include "namespace.h"
 
 BEGIN_NAMESPACE;
 
-#ifndef IN_LIB
-ref class Complex;
-#else
 public ref class Complex
 {
 protected:
@@ -72,6 +68,5 @@ public:
   static Complex^ operator /(Complex^ s, Complex^ c);
   static Complex^ operator /(double d, Complex^ c);
 };
-#endif
 
 END_NAMESPACE;

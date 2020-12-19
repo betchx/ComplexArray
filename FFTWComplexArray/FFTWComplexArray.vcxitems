@@ -14,9 +14,10 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\ComplexArray\FFTWComplexArray.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FFTWComplexArray.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)namespace.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\ComplexArray\FFTWComplexArray.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FFTWComplexArray.cpp" />
   </ItemGroup>
 </Project>

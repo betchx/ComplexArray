@@ -1,11 +1,9 @@
 #pragma once
 
-#include "ComplexArray.h"
+#include <complex>
 #include <fftw3.h>
 
 BEGIN_NAMESPACE;
-
-ref class TestFFTWComplexArray;
 
 class FFTWComplexArray
 {

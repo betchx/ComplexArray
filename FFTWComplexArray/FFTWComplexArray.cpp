@@ -1,4 +1,5 @@
-#include "Stdafx.h"
+//#include "Stdafx.h"
+#include "namespace.h"
 #include "FFTWComplexArray.h"
 
 using namespace System::Runtime::InteropServices;
@@ -18,7 +19,7 @@ FFTWComplexArray::FFTWComplexArray(array<double>^ arr)
   data_.ptr = (double*)fftw_malloc(length * sizeof(fftw_complex));
   if (data_.cptr) {
     length_ = length;
-    Marshal::Copy(arr, 0, (IntPtr)data_.ptr, length * 2);
+    Marshal::Copy(arr, 0, (System::IntPtr)data_.ptr, length * 2);
   }
 }
 
