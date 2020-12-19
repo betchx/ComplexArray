@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ComplexArray.h"
+#include <fftw3.h>
 
 BEGIN_NAMESPACE;
 
@@ -18,8 +19,8 @@ private:
   union FFTW_Complex_Ptr
   {
     double* ptr;
-    fftw_complex* cptr;
-    std::complex<double>* complex;
+    fftw_complex *cptr;
+    std::complex<double> *complex;
   } data_;
 
   friend ref class TestFFTWComplexArray;

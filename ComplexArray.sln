@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComplexArray", "ComplexArray\ComplexArray.vcxproj", "{B0F32A58-1907-48AF-9668-C6E73AA00FE9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestArray", "TestArray\TestArray.vcxproj", "{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}"
@@ -8,22 +10,49 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestArray", "TestArray\Test
 		{B0F32A58-1907-48AF-9668-C6E73AA00FE9} = {B0F32A58-1907-48AF-9668-C6E73AA00FE9}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FFTWComplexArray", "FFTWComplexArray\FFTWComplexArray.vcxitems", "{F263E621-1901-41AD-8AE6-2E047360EA20}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NUnitTest", "NUnitTest\NUnitTest.vcxproj", "{96FD1005-277E-4774-888D-61FBDC82C1E0}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		FFTWComplexArray\FFTWComplexArray.vcxitems*{89eca6f0-5a10-4e46-9dc6-44f9b67e7037}*SharedItemsImports = 4
+		FFTWComplexArray\FFTWComplexArray.vcxitems*{96fd1005-277e-4774-888d-61fbdc82c1e0}*SharedItemsImports = 4
+		FFTWComplexArray\FFTWComplexArray.vcxitems*{b0f32a58-1907-48af-9668-c6e73aa00fe9}*SharedItemsImports = 4
+		FFTWComplexArray\FFTWComplexArray.vcxitems*{f263e621-1901-41ad-8ae6-2e047360ea20}*SharedItemsImports = 9
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|Win32.ActiveCfg = Debug|Win32
 		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|Win32.Build.0 = Debug|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Debug|x64.ActiveCfg = Debug|Win32
 		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|Win32.ActiveCfg = Release|Win32
 		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|Win32.Build.0 = Release|Win32
+		{B0F32A58-1907-48AF-9668-C6E73AA00FE9}.Release|x64.ActiveCfg = Release|Win32
 		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Debug|Win32.ActiveCfg = Debug|Win32
 		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Debug|Win32.Build.0 = Debug|Win32
+		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Debug|x64.ActiveCfg = Debug|Win32
 		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Release|Win32.ActiveCfg = Release|Win32
 		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Release|Win32.Build.0 = Release|Win32
+		{89ECA6F0-5A10-4E46-9DC6-44F9B67E7037}.Release|x64.ActiveCfg = Release|Win32
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Debug|Win32.Build.0 = Debug|Win32
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Debug|x64.ActiveCfg = Debug|x64
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Debug|x64.Build.0 = Debug|x64
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Release|Win32.ActiveCfg = Release|Win32
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Release|Win32.Build.0 = Release|Win32
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Release|x64.ActiveCfg = Release|x64
+		{96FD1005-277E-4774-888D-61FBDC82C1E0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED73769B-A7FE-476F-8E70-CEEF7AFDEE41}
 	EndGlobalSection
 EndGlobal

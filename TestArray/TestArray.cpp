@@ -1,7 +1,6 @@
 // TestArray.cpp : メイン プロジェクト ファイルです。
 
 #include "stdafx.h"
-//#include <ComplexArray.h>
 #include <cmath>
 #include <complex>
 #include <random>

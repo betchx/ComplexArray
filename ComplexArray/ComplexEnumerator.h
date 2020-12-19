@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ComplexView.h"
+#include <complex>
+
+#ifdef IN_LIB
 
 BEGIN_NAMESPACE;
 
@@ -179,3 +182,5 @@ public:
 };
 
 END_NAMESPACE;
+
+#endif

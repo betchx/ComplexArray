@@ -3,10 +3,11 @@
 #include "ComplexArray.h"
 #include "FFTWComplexArray.h"
 
-using namespace NUnit::Framework;
-
 BEGIN_NAMESPACE;
 
+#ifndef IN_LIB
+ref class WaveData;
+#else
 public ref class WaveData
 {
   static unsigned last_id_ = 0u;
@@ -44,7 +45,7 @@ public ref class WaveData
 public:
   WaveData(int size);
   WaveData(array<double>^ arr);
-  WaveData(ComplexArray^ carr);
+  explicit WaveData(ComplexArray^ carr);
   WaveData(WaveData^ other);
 
 public protected: // only in c++/cli
@@ -75,37 +76,23 @@ public:
   property IEnumerable<double>^ Abs { IEnumerable<double>^ get(); }
   property IEnumerable<double>^ Ang { IEnumerable<double>^ get(); }
   property IEnumerable<double>^ Power { IEnumerable<double>^ get(); }
-  property IEnumerable<double>^ dB { IEnumerable<double>^ get(); }
+  property IEnumerable<double>^ Decibel { IEnumerable<double>^ get(); }
 
-  property unsigned wave_id { unsigned get() { return wave_id_; }}
-  property unsigned   sp_id { unsigned get() { return   sp_id_; }}
+  property unsigned WaveID { unsigned get() { return wave_id_; }}
+  property unsigned SpectrumID { unsigned get() { return sp_id_; }}
 
-  void clear_wave();
-  void clear_sp();
+  void ClearWave();
+  void ClearSpectrum();
+  bool Update();
 
-  bool is_dirty() { return dirty_wave_ || dirty_sp_; }
-  bool update();
+  property bool IsDirty { bool get(){ return dirty_wave_ || dirty_sp_; }}
+  property bool IsWaveDirty {bool get() { return dirty_wave_; } }
+  property bool IsSpectrumDirty {bool get() { return dirty_sp_; }}
 
   // Convolution
   static WaveData^ operator * (WaveData^ lhs, WaveData^ rhs);
-
-private:
-  [TestFixture] // ref class can contain test
-  ref class Test {
-  public:
-    [Test] void Allocation();
-    [Test] void CreateByArray();
-    [Test] void CreateByFullComplexArray();
-    [Test] void CreateByHalfComplexArray();
-    [Test] void PulseFFT();
-    [Test] void Spectrum();
-    [Test] void Wave();
-    [Test] void WaveAssign();
-    [Test] void Convolution();
-    [Test] void Abs();
-    [Test] void Power();
-    [Test] void dB();
-  };
 };
+
+#endif
 
 END_NAMESPACE;

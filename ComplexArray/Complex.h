@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Stdafx.h"
-
 using namespace System;
 using namespace System::Collections::Generic;
 
@@ -10,6 +8,9 @@ using namespace System::Collections::Generic;
 
 BEGIN_NAMESPACE;
 
+#ifndef IN_LIB
+ref class Complex;
+#else
 public ref class Complex
 {
 protected:
@@ -71,5 +72,6 @@ public:
   static Complex^ operator /(Complex^ s, Complex^ c);
   static Complex^ operator /(double d, Complex^ c);
 };
+#endif
 
 END_NAMESPACE;
