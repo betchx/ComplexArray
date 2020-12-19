@@ -1,9 +1,29 @@
-#include "stdafx.h"
-#include "TestWaveData.h"
+#include <complex>
+#include <fftw3.h>
 #include "..\ComplexArray\WaveData.h"
 
 using namespace ComplexArrayLib;
 using namespace NUnit::Framework;
+using namespace System;
+using namespace System::Collections::Generic;
+
+[NUnit::Framework::TestFixture]
+ref class TestWaveData
+{
+public:
+  [NUnit::Framework::Test] void Allocation();
+  [NUnit::Framework::Test] void CreateByArray();
+  [NUnit::Framework::Test] void CreateByFullComplexArray();
+  [NUnit::Framework::Test] void CreateByHalfComplexArray();
+  [NUnit::Framework::Test] void PulseFFT();
+  [NUnit::Framework::Test] void Spectrum();
+  [NUnit::Framework::Test] void Wave();
+  [NUnit::Framework::Test] void WaveAssign();
+  [NUnit::Framework::Test] void Convolution();
+  [NUnit::Framework::Test] void Abs();
+  [NUnit::Framework::Test] void Power();
+  [NUnit::Framework::Test] void Decibel();
+};
 
 
 //Test
