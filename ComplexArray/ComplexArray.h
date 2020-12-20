@@ -30,6 +30,7 @@ public:
   ComplexArray(const ComplexArray^ other);
   ComplexArray(int length, bool zero_clear);
   ComplexArray(int length);
+  ComplexArray(array<double>^ reals, array<double>^ imags);
 
   static ComplexArray^ real(int size, IEnumerable<double>^ e);
   static ComplexArray^ real(IEnumerable<double>^ e);

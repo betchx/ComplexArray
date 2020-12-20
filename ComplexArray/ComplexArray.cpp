@@ -46,6 +46,22 @@ ComplexArray::ComplexArray(array<double>^ arr)
   }
 }
 
+ComplexArray::ComplexArray(array<double>^ reals, array<double>^ imags)
+{
+  if (reals->Length != imags->Length)
+  {
+    throw gcnew ArgumentException(gcnew String("Letgth of argument arrays must be same."));
+  }
+  size_ = reals->Length*2;
+  allocate();
+  for (int i = 0; i < Length; i++)
+  {
+    data_[i * 2] = reals[i];
+    data_[i * 2 + 1] = imags[i];
+  }
+}
+
+
 ComplexArray::ComplexArray(const ComplexArray^ other)
 {
   size_ = other->size_;
