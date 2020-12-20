@@ -10,18 +10,18 @@ bool ViewEnumerator<T>::MoveNext()
   return (++(++ptr)) < last;
 }
 
-generic <typename T> 
+generic <typename T>
 void ViewEnumerator<T>::Reset()
 {
 	ptr = first;
 }
 
-generic <typename T> 
+generic <typename T>
 ViewEnumerator<T>::ViewEnumerator(double* base, int size)
 	:ptr(base-2),first(base-2),last(base+size)
 {}
 
-generic <typename T> 
+generic <typename T>
 ViewEnumerator<T>::~ViewEnumerator()
 {}
 
@@ -39,7 +39,7 @@ Complex^ ComplexEnum::Current::get()
   return gcnew ComplexView(ptr);
 }
 
-// 
+//
 
 Complex^ ComplexEnumerator::Current::get()
 {
