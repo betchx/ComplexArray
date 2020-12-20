@@ -57,18 +57,18 @@ void TestWaveData::CreateByFullComplexArray()
   array<double>^ arr = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 };
   ComplexArray carr(arr);
   WaveData wd(carr);
-  Assert::AreEqual(arr->Length, wd.Length);
+  Assert::AreEqual(carr.Length, wd.Length);
   Assert::True(wd.IsWaveDirty);
   Assert::False(wd.IsSpectrumDirty);
-  Assert::AreEqual(arr->Length / 2 + 1, wd.SpLength);
+  Assert::AreEqual(carr.Length / 2 + 1, wd.SpLength);
 
   // check values
   Assert::AreEqual(1.0, wd.Real[0], 0.001);
-  Assert::AreEqual(2.0, wd.Imag[0], 0.001);
+  Assert::AreEqual(0.0, wd.Imag[0], 0.001);
   Assert::AreEqual(3.0, wd.Real[1], 0.001);
   Assert::AreEqual(4.0, wd.Imag[1], 0.001);
   Assert::AreEqual(5.0, wd.Real[2], 0.001);
-  Assert::AreEqual(6.0, wd.Imag[2], 0.001);
+  Assert::AreEqual(0.0, wd.Imag[2], 0.001);
 }
 
 void TestWaveData::CreateByHalfComplexArray()
@@ -84,7 +84,7 @@ void TestWaveData::CreateByHalfComplexArray()
 
   // check values
   Assert::AreEqual(1.0, wd.Real[0], 0.001);
-  Assert::AreEqual(2.0, wd.Imag[0], 0.001);
+  Assert::AreEqual(0.0, wd.Imag[0], 0.001);
   Assert::AreEqual(3.0, wd.Real[1], 0.001);
   Assert::AreEqual(4.0, wd.Imag[1], 0.001);
   Assert::AreEqual(5.0, wd.Real[2], 0.001);
@@ -92,7 +92,7 @@ void TestWaveData::CreateByHalfComplexArray()
   Assert::AreEqual(7.0, wd.Real[3], 0.001);
   Assert::AreEqual(8.0, wd.Imag[3], 0.001);
   Assert::AreEqual(9.0, wd.Real[4], 0.001);
-  Assert::AreEqual(10.0, wd.Imag[4], 0.001);
+  Assert::AreEqual(0.0, wd.Imag[4], 0.001);
 }
 
 void TestWaveData::PulseFFT()
@@ -155,42 +155,44 @@ void TestWaveData::Wave()
 void TestWaveData::Spectrums()
 {
   array<double>^ arr = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 };
+  array<double>^ ans = { 1.0, 0.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0,  0.0 };
   ComplexArray carr(arr);
+  ComplexArray cans(ans);
   WaveData wd(carr);
   Assert::AreEqual(8, wd.Length);
   Assert::AreEqual(5, wd.SpLength);
-  IEnumerator<Complex^>^ ce = carr.GetEnumerator();
+  IEnumerator<Complex^>^ ce = cans.GetEnumerator();
   IEnumerator<Complex^>^ we = wd.Spectrums->GetEnumerator();
   Assert::True(ce->MoveNext());
   Assert::True(we->MoveNext());
   Assert::AreEqual(ce->Current->Real, we->Current->Real, 0.000001);
-  Assert::AreEqual(arr[0], we->Current->Real, 0.000001);
+  Assert::AreEqual(ans[0], we->Current->Real, 0.000001);
   Assert::AreEqual(ce->Current->Imag, we->Current->Imag, 0.000001);
-  Assert::AreEqual(arr[1], we->Current->Imag, 0.000001);
+  Assert::AreEqual(ans[1], we->Current->Imag, 0.000001);
   Assert::True(ce->MoveNext());
   Assert::True(we->MoveNext());
   Assert::AreEqual(ce->Current->Real, we->Current->Real, 0.000001);
-  Assert::AreEqual(arr[2], we->Current->Real, 0.000001);
+  Assert::AreEqual(ans[2], we->Current->Real, 0.000001);
   Assert::AreEqual(ce->Current->Imag, we->Current->Imag, 0.000001);
-  Assert::AreEqual(arr[3], we->Current->Imag, 0.000001);
+  Assert::AreEqual(ans[3], we->Current->Imag, 0.000001);
   Assert::True(ce->MoveNext());
   Assert::True(we->MoveNext());
   Assert::AreEqual(ce->Current->Real, we->Current->Real, 0.000001);
-  Assert::AreEqual(arr[4], we->Current->Real, 0.000001);
+  Assert::AreEqual(ans[4], we->Current->Real, 0.000001);
   Assert::AreEqual(ce->Current->Imag, we->Current->Imag, 0.000001);
-  Assert::AreEqual(arr[5], we->Current->Imag, 0.000001);
+  Assert::AreEqual(ans[5], we->Current->Imag, 0.000001);
   Assert::True(ce->MoveNext());
   Assert::True(we->MoveNext());
   Assert::AreEqual(ce->Current->Real, we->Current->Real, 0.000001);
-  Assert::AreEqual(arr[6], we->Current->Real, 0.000001);
+  Assert::AreEqual(ans[6], we->Current->Real, 0.000001);
   Assert::AreEqual(ce->Current->Imag, we->Current->Imag, 0.000001);
-  Assert::AreEqual(arr[7], we->Current->Imag, 0.000001);
+  Assert::AreEqual(ans[7], we->Current->Imag, 0.000001);
   Assert::True(ce->MoveNext());
   Assert::True(we->MoveNext());
   Assert::AreEqual(ce->Current->Real, we->Current->Real, 0.000001);
-  Assert::AreEqual(arr[8], we->Current->Real, 0.000001);
+  Assert::AreEqual(ans[8], we->Current->Real, 0.000001);
   Assert::AreEqual(ce->Current->Imag, we->Current->Imag, 0.000001);
-  Assert::AreEqual(arr[9], we->Current->Imag, 0.000001);
+  Assert::AreEqual(ans[9], we->Current->Imag, 0.000001);
   Assert::False(ce->MoveNext());
   Assert::False(we->MoveNext());
 }
