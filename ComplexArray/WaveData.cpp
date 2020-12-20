@@ -42,22 +42,17 @@ WaveData::WaveData(WaveData^ other)
 WaveData::WaveData(ComplexArray^ carr)
   :wave_(nullptr), sp_(nullptr), wave_id_(0u), sp_id_(0u)
 {
-  int len;
-  if (carr->Length % 2 == 1) {
-    len = (carr->Length - 1) * 2;
-  }
-  else {
-    len = carr->Length * 2;
-  }
+  // if length of carr is even numebr, full spectrum (including conj). Otherwise, it will be half spectrum.
+  int len = (carr->Length % 2 == 0)? carr->Length : ((carr->Length -1 ) * 2);
   allocate(len);
-  double* ptr = sp_->dbl_begin();
-  IEnumerator<ComplexArrayLib::Complex^>^ e = carr->GetEnumerator();
-  double* end = sp_->dbl_end();
-  while (e->MoveNext() && ptr != end)
+  int sp_len = len / 2 + 1;
+  for (int i = 0; i < sp_len; i++)
   {
-    *(ptr++) = e->Current->Real;
-    *(ptr++) = e->Current->Imag;
+    sp_->set(i, carr[i]->Real, carr[i]->Imag);
   }
+  sp_->at(0).imag(0.0);
+  sp_->at(len / 2).imag(0.0);
+
   sp_updated();
 }
 
@@ -120,13 +115,9 @@ void WaveData::sp::set(int idx, std::complex<double>& value) {
 
 bool WaveData::Update()
 {
-  if (IsDirty) {
-    update_wave();
-    update_sp();
-    return !IsDirty;
-  }
-  else
-    return false;
+  update_wave();
+  update_sp();
+  return !IsDirty;
 }
 
 void WaveData::allocate(int length)
@@ -262,7 +253,7 @@ void WaveData::Real::set(int idx, double value) {
 
 IEnumerable<double>^ WaveData::Reals::get() {
   update_sp();
-  return gcnew ComplexElementEnum(sp_->dbl_begin(), sp_->size());
+  return gcnew ComplexElementEnum(sp_->dbl_begin(), SpLength*2);
 }
 
 void WaveData::Reals::set(IEnumerable<double> ^ arr)
@@ -290,7 +281,7 @@ void WaveData::Imag::set(int idx, double value) {
 
 IEnumerable<double>^ WaveData::Imags::get() {
   update_sp();
-  return gcnew ComplexElementEnum(sp_->dbl_begin() + 1, sp_->size());
+  return gcnew ComplexElementEnum(sp_->dbl_begin() + 1, SpLength*2);
 }
 
 void WaveData::Imags::set(IEnumerable<double> ^ arr)
